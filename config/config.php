@@ -59,7 +59,12 @@ array_insert($GLOBALS['BE_MOD'], 1, array
 ));
 
 
- 
 
+/**
+ * Front end modules
+ */
+$GLOBALS['FE_MOD']['trainingmanager'] = array
+(
+	'training_list'   => 'ModuleTrainingList'
+);
 
-?>

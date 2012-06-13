@@ -27,12 +27,58 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
+class ModuleTrainingList extends Module
+{
+
+	/**
+	 * Template
+	 * @var string
+	 */
+	protected $strTemplate = 'mod_training_list';
 
 
-/**
- * Back end modules
- */
-$GLOBALS['TL_LANG']['MOD']['trainingmanager'] 		= 'Kursverwaltung';
-$GLOBALS['TL_LANG']['MOD']['training_date'] 		= array('Kurs-Termine', 'Termine verwalten.');
-$GLOBALS['TL_LANG']['MOD']['training_course'] 		= array('Kurse', 'Kurse verwalten.');
-$GLOBALS['TL_LANG']['MOD']['training_category'] 	= array('Kurs-Kategorien', 'Kategorien verwalten.');
+	protected function compile()
+	{
+				
+		$objPage = $this->Database->prepare("SELECT 
+		td.id, 
+		td.code,
+		td.startDate, 
+		td.endDate,  
+		tc.name,
+		tc.maxParticipants,
+		tc.price
+		
+		FROM 
+		tl_training_course tc, tl_training_date td 
+		
+		WHERE 
+		td.published=1 AND 
+		td.pid=tc.id  
+		
+		ORDER BY 
+		td.startDate DESC")
+			->limit($this->training_list_numberOfItems)
+			->execute();
+			
+		
+		$trainingList = array();
+		while ($objPage->next()) 
+		{
+			$trainingList[] = array
+			(
+				'id' => $objPage->id, 
+				'code' => $objPage->code,
+				'name' => $objPage->name,
+				'datestring' => "Kursbeginn: ".$this->parseDate("d.m Y", $objPage->startDate), 
+				'freespots' => $objPage->maxParticipants." freie Plätze",
+				'register' => 'jetzt anmelden' //angemeldete subtrahieren
+			);
+		} 
+		
+		
+		$this->Template->data = $trainingList;			
+	}
+}
+
+?>

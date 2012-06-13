@@ -55,3 +55,12 @@ CREATE TABLE `tl_training_category` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
+
+
+-- 
+-- Table `tl_module`
+-- 
+
+CREATE TABLE `tl_module` (
+  `training_list_numberOfItems` int(10) unsigned NOT NULL default '0',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

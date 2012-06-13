@@ -30,9 +30,9 @@
 
 
 /**
- * Back end modules
+ * Fields
  */
-$GLOBALS['TL_LANG']['MOD']['trainingmanager'] 		= 'Kursverwaltung';
-$GLOBALS['TL_LANG']['MOD']['training_date'] 		= array('Kurs-Termine', 'Termine verwalten.');
-$GLOBALS['TL_LANG']['MOD']['training_course'] 		= array('Kurse', 'Kurse verwalten.');
-$GLOBALS['TL_LANG']['MOD']['training_category'] 	= array('Kurs-Kategorien', 'Kategorien verwalten.');
+$GLOBALS['TL_LANG']['tl_module']['training_list_numberOfItems'] 	= array('Teilnehmerlimit', 'Anzahl der maximalen Teilnehmer.');
+
+
+
