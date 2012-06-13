@@ -35,49 +35,35 @@ class ModuleTrainingList extends Module
 	 * @var string
 	 */
 	protected $strTemplate = 'mod_training_list';
+	
+	
+	protected $TrainingManager;
 
+
+	public function generate()
+	{
+		if (TL_MODE == 'BE')
+		{
+			$objTemplate = new BackendTemplate('be_wildcard');
+
+			$objTemplate->wildcard = '### TRAINING LIST ###';
+			$objTemplate->title = $this->headline;
+			$objTemplate->id = $this->id;
+			$objTemplate->link = $this->name;
+			$objTemplate->href = $this->Environment->script.'?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
+
+			return $objTemplate->parse();
+		}
+		
+		return parent::generate();
+	}
 
 	protected function compile()
 	{
-				
-		$objPage = $this->Database->prepare("SELECT 
-		td.id, 
-		td.code,
-		td.startDate, 
-		td.endDate,  
-		tc.name,
-		tc.maxParticipants,
-		tc.price
-		
-		FROM 
-		tl_training_course tc, tl_training_date td 
-		
-		WHERE 
-		td.published=1 AND 
-		td.pid=tc.id  
-		
-		ORDER BY 
-		td.startDate DESC")
-			->limit($this->training_list_numberOfItems)
-			->execute();
-			
-		
-		$trainingList = array();
-		while ($objPage->next()) 
-		{
-			$trainingList[] = array
-			(
-				'id' => $objPage->id, 
-				'code' => $objPage->code,
-				'name' => $objPage->name,
-				'datestring' => "Kursbeginn: ".$this->parseDate("d.m Y", $objPage->startDate), 
-				'freespots' => $objPage->maxParticipants." freie Plätze",
-				'register' => 'jetzt anmelden' //angemeldete subtrahieren
-			);
-		} 
-		
-		
-		$this->Template->data = $trainingList;			
+		$this->import('TrainingManager');
+		$result = $this->TrainingManager->allCourses();
+
+		$this->Template->data = $result;			
 	}
 }
 

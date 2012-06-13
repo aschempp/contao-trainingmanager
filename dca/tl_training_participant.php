@@ -30,9 +30,9 @@
 
 
 /**
- * Table tl_training_date
+ * Table tl_training_participant
  */
-$GLOBALS['TL_DCA']['tl_training_date'] = array
+$GLOBALS['TL_DCA']['tl_training_participant'] = array
 (
 
 	// Config
@@ -40,7 +40,7 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 	(
 		'dataContainer'					=> 'Table',
 		'enableVersioning'				=> true,
-		'ctable'						=> array('tl_training_registration'),		
+		'ptable'						=> 'tl_training_registration',
 	),
 
 	// List
@@ -48,15 +48,15 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 	(
 		'sorting' => array
 		(
-			'mode'						=> 2,
-			'fields'					=> array('startDate DESC'),
-			'panelLayout'				=> 'filter;sort,search,limit',
+			'mode'						=> 1,
+			'fields'					=> array('name'),
+			'flag'						=> 1,
+			'panelLayout'				=> 'filter;search,limit',
 		),
 		'label' => array
 		(
-			'fields'					=> array('code', 'startDate', 'endDate'),
-			'format'					=> '%s <span style="color:#b3b3b3; padding-left:3px;">%s - %s</span>',
-
+			'fields'					=> array('name'),
+			'format'					=> '%s',
 		),
 		'global_operations' => array
 		(
@@ -72,34 +72,35 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 		(
 			'edit' => array
 			(
-				'label'					=> &$GLOBALS['TL_LANG']['tl_training_date']['edit'],
+				'label'					=> &$GLOBALS['TL_LANG']['tl_training_participant']['edit'],
 				'href'					=> 'act=edit',
 				'icon'					=> 'edit.gif'
 			),
 			'copy' => array
 			(
-				'label'					=> &$GLOBALS['TL_LANG']['tl_training_date']['copy'],
+				'label'					=> &$GLOBALS['TL_LANG']['tl_training_participant']['copy'],
 				'href'					=> 'act=copy',
 				'icon'					=> 'copy.gif'
 			),
+			'cut' => array
+			(
+				'label'					=> &$GLOBALS['TL_LANG']['tl_training_participant']['cut'],
+				'href'					=> 'act=paste&amp;mode=cut',
+				'icon'					=> 'cut.gif',
+				'attributes'			=> 'onclick="Backend.getScrollOffset();"'
+			),
 			'delete' => array
 			(
-				'label'					=> &$GLOBALS['TL_LANG']['tl_training_date']['delete'],
+				'label'					=> &$GLOBALS['TL_LANG']['tl_training_participant']['delete'],
 				'href'					=> 'act=delete',
 				'icon'					=> 'delete.gif',
 				'attributes'			=> 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset();"'
 			),
 			'show' => array
 			(
-				'label'					=> &$GLOBALS['TL_LANG']['tl_training_date']['show'],
+				'label'					=> &$GLOBALS['TL_LANG']['tl_training_participant']['show'],
 				'href'					=> 'act=show',
 				'icon'					=> 'show.gif'
-			),
-			'registrations' => array
-			(
-				'label'					=> &$GLOBALS['TL_LANG']['tl_training_date']['registrations'],
-				'href'					=> 'table=tl_training_registration',
-				'icon'					=> 'system/modules/trainingmanager/html/registrations.png'
 			),
 		)
 	),
@@ -107,67 +108,50 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'						=> '{name_legend},pid,code;{date_legend},startDate,endDate,timeForApplication;{publish_legend},published',
+		'default'						=> '{name_legend},pid,gender,firstname,lastname',
 	),
 
 	// Fields
 	'fields' => array
 	(
-
 		'pid' => array
 		(
-			'label'                  	=> &$GLOBALS['TL_LANG']['tl_training_date']['pid'],
+			'label'                  	=> &$GLOBALS['TL_LANG']['tl_training_participant']['pid'],
 			'exclude'               	=> true,
 			'filter'                  	=> true,
 			'sorting'					=> true,
 			'inputType'               	=> 'select',
-			'foreignKey'              	=> 'tl_training_course.name',
+			'foreignKey'              	=> 'tl_training_registration.id',
 			'eval'                    	=> array('doNotCopy'=>true, 'mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50')
 		),
-		'code' => array
+		'gender' => array
 		(
-			'label'						=> &$GLOBALS['TL_LANG']['tl_training_date']['code'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_training_participant']['gender'],
+			'exclude'                 => true,
+			'inputType'               => 'select',
+			'options'                 => array('male', 'female'),
+			'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+			'eval'                    => array('includeBlankOption'=>true, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50')
+		),
+		'firstname' => array
+		(
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_participant']['firstname'],
 			'exclude'					=> true,
 			'inputType'					=> 'text',
 			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
 		),
-		'startDate' => array
+		'lastname' => array
 		(
-			'label'                   	=> &$GLOBALS['TL_LANG']['tl_training_date']['startDate'],
-			'exclude'                 	=> true,
-			'sorting'					=> true,
-			'flag'						=> 8, 
-			'inputType'               	=> 'text',
-			'eval'                    	=> array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard')
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_participant']['lastname'],
+			'exclude'					=> true,
+			'inputType'					=> 'text',
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
 		),
-		'endDate' => array
-		(
-			'label'                   	=> &$GLOBALS['TL_LANG']['tl_training_date']['endDate'],
-			'exclude'                 	=> true,
-			'flag'						=> 8, 
-			'inputType'               	=> 'text',
-			'eval'                    	=> array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard')
-		),
-		'timeForApplication' => array
-		(
-			'label'                   	=> &$GLOBALS['TL_LANG']['tl_training_date']['timeForApplication'],
-			'exclude'                 	=> true,
-			'inputType'               	=> 'text',
-			'eval'                    	=> array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard')
-		),
-		'published' => array
-		(
-			'label'                		=> &$GLOBALS['TL_LANG']['tl_training_date']['published'],
-			'exclude'                 	=> true,
-			'filter'                  	=> true,
-			'inputType'              	=> 'checkbox',
-			'eval'                   	=> array('doNotCopy'=>true)
-		)
 	)
 );
 
 
-class tl_training_date extends Backend
+class tl_training_participant extends Backend
 {
 
 	/**

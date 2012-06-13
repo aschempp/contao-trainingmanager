@@ -30,41 +30,40 @@
 
 
 
-/**
- * Backend modules
- */
-array_insert($GLOBALS['BE_MOD'], 1, array
-( 	
-	'trainingmanager' => array(
 
-		'training_date' => array
-		(
-			'tables'		=> array('tl_training_date', 'tl_training_registration', 'tl_training_participant'),
-			'icon'			=> 'system/modules/trainingmanager/html/date.png',
-		),
-		
-		'training_course' => array
-		(
-			'tables'		=> array('tl_training_course'),
-			'icon'			=> 'system/modules/trainingmanager/html/course.png',
-		),
-		
-		'training_category' => array
-		(
-			'tables'		=> array('tl_training_category'),
-			'icon'			=> 'system/modules/trainingmanager/html/category.png',
-		)
+class ModuleTrainingRegistration extends Module
+{
+
+	/**
+	 * Template
+	 * @var string
+	 */
+	protected $strTemplate = 'mod_training_registration';
 	
-	)
-));
+	
+	public function generate()
+	{
+		if (TL_MODE == 'BE')
+		{
+			$objTemplate = new BackendTemplate('be_wildcard');
 
+			$objTemplate->wildcard = '### TRAINING REGISTRATION ###';
+			$objTemplate->title = $this->headline;
+			$objTemplate->id = $this->id;
+			$objTemplate->link = $this->name;
+			$objTemplate->href = $this->Environment->script.'?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
 
-
-/**
- * Front end modules
- */
-$GLOBALS['FE_MOD']['trainingmanager'] = array
-(
-	'training_list'   => 'ModuleTrainingList'
-);
+			return $objTemplate->parse();
+		}
+		
+		return parent::generate();
+	}
+	
+	
+	protected function compile()
+	{
+		
+		
+	}
+}
 

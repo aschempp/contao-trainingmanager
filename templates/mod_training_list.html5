@@ -10,10 +10,10 @@
 <!-- loop and print training-list -->
 <?php foreach($this->data as $row): ?>
 <div>
-	<div class="codeAndName"><?php echo $row['code']; ?> - <?php echo $row['name']; ?></div>
-	<div class="datestring"><?php echo $row['datestring']; ?></div>
-	<div class="freespots"><?php echo $row['freespots']; ?></div>
-	<div class="register"><?php echo $row['register']; ?></div>
+	<div class="name"><?php echo $row['name']; ?></div>
+	<div class="datestring">Kursbeginn: <?php echo $row['formattedStartDate']; ?></div> 
+	<div class="available"><?php echo $row['available']; ?> freie Plätze</div> 
+	<a class="register" href="#">jetzt anmelden</a> 
 </div>
 <?php endforeach; ?>
 
