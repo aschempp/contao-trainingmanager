@@ -9,5 +9,69 @@
 
 
 
+<form action="<?php echo $this->action; ?>" id="<?php echo $this->formId; ?>" method="post" enctype="<?php echo $this->enctype; ?>">
+<div class="formbody">
+<input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>" />
+<input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}" />
+<?php if (!$this->tableless): ?>
+<table>
+
+<tr class="<?php echo $this->rowLast; ?> row_last">
+    <td class="col_0 col_first">&nbsp;</td>
+</tr>
+
+<?php 
+
+$participantCnt = 1;
+foreach($this->participants as $fields) 
+{	
+	echo '<tr><td>'.$participantCnt.'. Teilnehmer</td></tr>';
+	foreach($fields as $data) 
+	{
+		echo $data->parse();
+	}
+	$participantCnt++;
+	
+}
+	
+?>
+
+
+<tr><td> Rechnungsaddresse</td></tr>
+<?php 
+
+foreach($this->registration as $data) 
+{	
+	echo $data->parse();
+}
+	
+?>
+
+<tr>	
+	<td class="col_1 col_last"><div class="submit_container"><input type="submit" class="submit" value="<?php echo $this->slabel; ?>" /></div></td>
+</tr>
+
+</table>
+<?php else: ?>
+<div class="fields">
+<?php echo $this->fields; ?>
+</div>
+<div class="submit_container">
+<input type="submit" class="submit" value="<?php echo $this->slabel; ?>" /> 
+</div>
+<?php endif; ?>
+</div>
+</form>
+<?php if ($this->hasError): ?>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+try {
+  window.scrollTo(null, ($('<?php echo $this->formId; ?>').getElement('p.error').getPosition().y - 20));
+} catch(e) {}
+/* ]]> */
+</script>
+<?php endif; ?>
+
 </div>
 <!-- indexer::continue -->

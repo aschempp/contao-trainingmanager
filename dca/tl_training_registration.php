@@ -136,21 +136,21 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'inputType'               => 'select',
 			'options'                 => array('male', 'female'),
 			'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-			'eval'                    => array('includeBlankOption'=>true, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'firstname' => array
 		(
 			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['firstname'],
 			'exclude'					=> true,
 			'inputType'					=> 'text',
-			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50'),
 		),
 		'lastname' => array
 		(
 			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['lastname'],
 			'exclude'					=> true,
 			'inputType'					=> 'text',
-			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50'),
 		),
 		'company' => array
 		(
@@ -160,7 +160,7 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'sorting'                 => true,
 			'flag'                    => 1,
 			'inputType'               => 'text',
-			'eval'                    => array('maxlength'=>255, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'address', 'tl_class'=>'w50')
+			'eval'                    => array('maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'street' => array
 		(
@@ -168,7 +168,7 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('maxlength'=>255, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'address', 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'postal' => array
 		(
@@ -176,7 +176,7 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('maxlength'=>32, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'address', 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>32, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'city' => array
 		(
@@ -186,7 +186,7 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'search'                  => true,
 			'sorting'                 => true,
 			'inputType'               => 'text',
-			'eval'                    => array('maxlength'=>255, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'address', 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'phone' => array
 		(
@@ -194,7 +194,7 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('maxlength'=>64, 'rgxp'=>'phone', 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'contact', 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>64, 'rgxp'=>'phone', 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'email' => array
 		(
@@ -202,14 +202,14 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'rgxp'=>'email', 'maxlength'=>255, 'unique'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'rgxp'=>'email', 'maxlength'=>255, 'unique'=>true, 'decodeEntities'=>true, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'comments' => array
 		(
 			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['comments'],
 			'exclude'					=> true,
 			'inputType'					=> 'textarea',
-			'eval'						=> array('mandatory'=>true, 'maxlength'=>255),
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true),
 		)
 	)
 );

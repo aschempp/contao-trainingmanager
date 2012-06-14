@@ -29,43 +29,16 @@
 
 
 
-
 /**
- * Backend modules
+ * Fields
  */
-array_insert($GLOBALS['BE_MOD'], 1, array
-( 	
-	'trainingmanager' => array(
-
-		'training_date' => array
-		(
-			'tables'		=> array('tl_training_date', 'tl_training_registration', 'tl_training_participant'),
-			'icon'			=> 'system/modules/trainingmanager/html/date.png',
-		),
-		
-		'training_course' => array
-		(
-			'tables'		=> array('tl_training_course'),
-			'icon'			=> 'system/modules/trainingmanager/html/course.png',
-		),
-		
-		'training_category' => array
-		(
-			'tables'		=> array('tl_training_category'),
-			'icon'			=> 'system/modules/trainingmanager/html/category.png',
-		)
-	
-	)
-));
-
+$GLOBALS['TL_LANG']['tl_training_participant']['firstname']   = array('Vorname', 'Bitte geben Sie den Vornamen ein.');
+$GLOBALS['TL_LANG']['tl_training_participant']['lastname']    = array('Nachname', 'Bitte geben Sie den Nachnamen ein.');
+$GLOBALS['TL_LANG']['tl_training_participant']['gender']      = array('Geschlecht', 'Bitte wŠhlen Sie das Geschlecht.');
 
 
 /**
- * Front end modules
+ * Legends
  */
-$GLOBALS['FE_MOD']['trainingmanager'] = array
-(
-	'training_list'   => 'ModuleTrainingList',
-	'training_registration'   => 'ModuleTrainingRegistration'
-);
+$GLOBALS['TL_LANG']['tl_training_participant']['name_legend']	= 'Training Participant';
 

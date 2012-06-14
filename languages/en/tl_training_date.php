@@ -28,7 +28,6 @@
  */
 
 
-
 /**
  * Fields
  */
@@ -49,7 +48,6 @@ $GLOBALS['TL_LANG']['tl_training_date']['copy']				= array('Kursdatum kopieren',
 $GLOBALS['TL_LANG']['tl_training_date']['delete']			= array('Kursdatum löschen', 'Kursdatum ID %s löschen');
 $GLOBALS['TL_LANG']['tl_training_date']['show']				= array('Kursdatumdetails', 'Details des Kursdatums ID %s anzeigen');
 $GLOBALS['TL_LANG']['tl_training_date']['registrations']	= array('Kursteilnehmer.', 'Kursteilnehmer verwalten.');
-
 
 /**
  * Legends

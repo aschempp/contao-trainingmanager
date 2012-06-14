@@ -40,6 +40,18 @@ class ModuleTrainingRegistration extends Module
 	 */
 	protected $strTemplate = 'mod_training_registration';
 	
+	/**
+	 * Form id
+	 * @var string
+	 */
+	protected $strFormId = 'tl_training_registration';
+	
+	/**
+	 * Submitable
+	 * @var boolean
+	 */
+	protected $doNotSubmit = false;
+	
 	
 	public function generate()
 	{
@@ -62,8 +74,120 @@ class ModuleTrainingRegistration extends Module
 	
 	protected function compile()
 	{
+		$arrParticipants = array();
+
+		$arrRegistration = $this->generateFields('tl_training_registration'); 
+
+		for( $i=0; $i<4; $i++ )
+		{
+			$arrParticipants[] = $this->generateFields('tl_training_participant', $i, ($i > 0 ? false : true));
+		}
+
+		//$this->Template->slabel = specialchars($GLOBALS['TL_LANG']['MSC']['register']);
+		$this->Template->formId = $this->strFormId;
+		$this->Template->slabel = "Submit..";
+		$this->Template->action = $this->getIndexFreeRequest();
+		$this->Template->registration = $arrRegistration;
+		$this->Template->participants = $arrParticipants;
 		
+		// Create new user if there are no errors
+		if ($this->Input->post('FORM_SUBMIT') == $this->strFormId && !$this->doNotSubmit)
+		{
+			$this->createNewRegistration($arrRegistration, $arrParticipants);
+		}
+
+	}
+	
+	// TODO: move down
+	protected function createNewRegistration($arrRegistration, $arrParticipants) 
+	{
+		$time = time();
+		$arrData = array('tstamp'=>$time);
+
+		foreach($arrRegistration as $field=>$objWidget) 
+		{
+			$arrData[$field] = $objWidget->value;
+		}
 		
+		// Create Registration
+		$objNewRegistration = $this->Database->prepare("INSERT INTO tl_training_registration %s")->set($arrData)->execute();
+		$insertId = $objNewRegistration->insertId;
+				
+		foreach($arrParticipants as $arrParticipant) 
+		{
+			$arrData = array('tstamp'=>$time);
+
+			foreach($arrParticipant as $field=>$objWidget) 
+			{
+				$arrData[$field] = $objWidget->value;
+			}
+
+			$arrData['pid'] = $insertId;
+			
+			// Create Participant
+			$objNewParticipant = $this->Database->prepare("INSERT INTO tl_training_participant %s")->set($arrData)->execute();
+		}
+				
+	}
+	
+	private function generateFields($strTable, $strSuffix='', $blnMandatoryCheck=true) 
+	{
+		$this->loadLanguageFile($strTable);
+		$this->loadDataContainer($strTable);
+
+		$arrWidgets = array();
+		$arrFields = &$GLOBALS['TL_DCA'][$strTable]['fields'];
+		
+		if ($blnCheckMandatory == false)
+		{
+			foreach( $arrFields as $field => $arrData)
+			{
+				if ($arrData['eval']['mandatory'] && $this->Input->post($field.$strSuffix) != '')
+				{
+					$blnMandatoryCheck = true;
+				}
+			}
+		}
+		
+		// Build form	
+		foreach($arrFields as $field => $arrData)
+		{
+			// Don't display hidden formfields 
+			if (!$arrData['eval']['feEditable'])
+			{
+				continue;
+			}
+							
+			$strClass = $GLOBALS['TL_FFL'][$arrData['inputType']];
+
+			// Continue if the class is not defined
+			if (!$this->classFileExists($strClass))
+			{
+				continue;
+			}
+
+			$arrData['eval']['tableless'] = false;
+			$arrData['eval']['mandatory'] = ($arrData['eval']['mandatory'] && $blnCheckMandatory);
+			$arrData['eval']['required'] = $arrData['eval']['mandatory'];
+
+			$objWidget = new $strClass($this->prepareForWidget($arrData, $field.$strSuffix, $arrData['default']));
+			$objWidget->storeValues = true;
+
+			// Validate input
+			if ($this->Input->post('FORM_SUBMIT') == $this->strFormId)
+			{
+				$objWidget->validate();
+				
+				if ($objWidget->hasErrors())
+				{
+					$this->doNotSubmit = true;
+				}
+			}
+
+			$arrWidgets[$field] = $objWidget;
+		}
+
+		return $arrWidgets;
 	}
 }
 

@@ -116,7 +116,7 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 	(
 		'pid' => array
 		(
-			'label'                  	=> &$GLOBALS['TL_LANG']['tl_training_participant']['pid'],
+			'label'                  	=> &$GLOBALS['TL_LANG']['tl_training_registration']['id'],
 			'exclude'               	=> true,
 			'filter'                  	=> true,
 			'sorting'					=> true,
@@ -131,21 +131,21 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 			'inputType'               => 'select',
 			'options'                 => array('male', 'female'),
 			'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-			'eval'                    => array('includeBlankOption'=>true, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50')
 		),
 		'firstname' => array
 		(
 			'label'						=> &$GLOBALS['TL_LANG']['tl_training_participant']['firstname'],
 			'exclude'					=> true,
 			'inputType'					=> 'text',
-			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50'),
 		),
 		'lastname' => array
 		(
 			'label'						=> &$GLOBALS['TL_LANG']['tl_training_participant']['lastname'],
 			'exclude'					=> true,
 			'inputType'					=> 'text',
-			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50'),
 		),
 	)
 );
