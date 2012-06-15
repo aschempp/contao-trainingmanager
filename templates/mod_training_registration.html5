@@ -1,4 +1,6 @@
 
+<!-- TODO: language file -->
+<h1>Anmeldung</h1>
 
 <!-- indexer::stop -->
 <div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
@@ -16,12 +18,42 @@
 <?php if (!$this->tableless): ?>
 <table>
 
-<tr class="<?php echo $this->rowLast; ?> row_last">
-    <td class="col_0 col_first">&nbsp;</td>
+<tr>
+<td colspan=2>	
+<?php
+
+	$arrCourses = array();
+	$strHtml = '';
+	foreach($this->courses as $course) {
+		$strHtml .= '<option id='.$course['id'].'>'.$course['name'].': '.$course['dateRange'].'</option>';
+	}
+		
+	echo "<select>$strHtml</select>";
+
+?>
+</td>
+</tr>
+
+<tr>
+<td>Kurs-Nummer: <?php echo $course['code']; ?></td>
+<td>Teilnahmegebühr: <?php echo $course['price']; ?></td>
+</tr>
+
+<tr>
+<td>Datum: <?php echo $course['formattedStartDate']; echo ($course['endDate'] > 0 ? ' - '.$course['formattedEndDate'] : ''); ?> </td>
+<td rowspan=2>Die Teilnahme beinhaltet Lehrgangsunterlagen, Prüfungsgebühren sowie Tagesverpflegung.</td>
+</tr>
+
+<tr>
+<td>Seminarort: <?php echo $course['location']; ?></td>
+</tr>
+
+
+<tr>
+<td><br></td>
 </tr>
 
 <?php 
-
 $participantCnt = 1;
 foreach($this->participants as $fields) 
 {	
@@ -35,9 +67,17 @@ foreach($this->participants as $fields)
 }
 	
 ?>
+</table>
 
 
-<tr><td> Rechnungsaddresse</td></tr>
+<br/>
+
+<!-- TODO: language file -->
+<h1>Rechnungsaddresse</h1>
+
+
+<table>
+
 <?php 
 
 foreach($this->registration as $data) 

@@ -30,6 +30,12 @@
 
 class TrainingManager extends System 
 {
+
+	public function getAvailableCourseDate($intCourseDate) 
+	{
+		return $this->getCourseDates(true, null, $intCourseDate); 	
+	}
+	
 	public function allCourses($intCourse = null) 
 	{
 		return $this->getCourseDates(false, $intCourse);
@@ -40,7 +46,7 @@ class TrainingManager extends System
 		return $this->getCourseDates(true, $intCourse); 
 	}
 	
-	protected function getCourseDates($blnAvailable, $intCourse = null) 
+	protected function getCourseDates($blnAvailable, $intCourse = null, $intCourseDate = null) 
 	{
 		$time = time();
 		$arrDates = array();
@@ -59,26 +65,65 @@ class TrainingManager extends System
 		td.timeForApplication >= $time 
 		" . (BE_USER_LOGGED_IN ? '' : " AND published='1'") . " 		
 		" . ( $intCourse != null ? " AND tc.id=$intCourse " : '') . "
-		
-		
+		" . ( $intCourseDate != null ? " AND td.id=$intCourseDate " : '') . "
+				
 		HAVING participantCount<tc.maxParticipants
 		
 		ORDER BY td.startDate")
 		->execute();
-				
+						
 				
 		while ($objDates->next()) 
 		{
 			$arrDates[] = array_merge($objDates->row(), array
 			(
 				'available'				=> ($objDates->maxParticipants - $objDates->participantCount),
-				'location' 				=> 'ZŸrich-Kloten', 
+				'location' 				=> 'ZÃ¼rich-Kloten', 
 				'formattedStartDate'	=> $this->parseDate($GLOBALS['TL_CONFIG']['dateFormat'], $objDates->startDate),  
 				'formattedEndDate'		=> $this->parseDate($GLOBALS['TL_CONFIG']['dateFormat'], $objDates->endDate),  
+				'dateRange'				=> $this->formatStartAndEndDate($this->parseDate('d.m.Y', $objDates->startDate), $this->parseDate('d.m.Y', $objDates->endDate), '.'),
 			));
 		}
 		
 		return $arrDates;
 	}
+	
+	
+	
+	private function formatStartAndEndDate($startDate, $endDate, $seperator) {
 		
+		if($endDate == null)
+		{
+			return $startDate;
+		} 
+		else
+		{
+			$arrStartDate = explode($seperator, $startDate);	
+			$arrEndDate = explode($seperator, $endDate);
+			
+			// same year
+			if($arrStartDate[2] == $arrEndDate[2]) 
+			{
+				// same month
+				if($arrStartDate[1] == $arrEndDate[1])
+				{
+					// same day
+					if($arrStartDate[0] == $arrEndDate[0])
+					{
+						return $startDate;
+					}
+					
+					return $arrStartDate[0]. '. - ' .$arrEndDate[0]. '.' .$arrStartDate[1]. '.' .$arrStartDate[2];
+				}
+				
+				return $arrStartDate[0]. '.' .$arrStartDate[1]. ' - '.$arrEndDate[0]. '.' .$arrEndDate[1]. '.' .$arrStartDate[2];
+			}
+			
+			return $startDate. ' - ' .$endDate;
+		}
+		
+	}
+
+	
+			
 }

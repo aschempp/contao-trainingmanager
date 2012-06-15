@@ -74,6 +74,12 @@ class ModuleTrainingRegistration extends Module
 	
 	protected function compile()
 	{
+	
+		$this->import('TrainingManager');
+		$courses = $this->TrainingManager->availableCourses();
+		$this->Template->courses  = $courses;
+		
+			
 		$arrParticipants = array();
 
 		$arrRegistration = $this->generateFields('tl_training_registration'); 
