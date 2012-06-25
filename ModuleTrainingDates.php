@@ -73,4 +73,3 @@ class ModuleTrainingDates extends Module
 	}
 }
 
-?>
