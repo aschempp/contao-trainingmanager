@@ -41,6 +41,7 @@ class TrainingManager extends System
 		return $this->getCourseDates(true, null, $intCourseDate);
 	}
 
+
 	/**
 	 * Returns all courses
 	 * @param int
@@ -50,6 +51,7 @@ class TrainingManager extends System
 	{
 		return $this->getCourseDates(false, $intCourse, null);
 	}
+
 
 	/**
 	 * Returns available courses
@@ -71,28 +73,30 @@ class TrainingManager extends System
 	 */
 	protected function getCourseDates($blnAvailable, $intCourse = null, $intCourseDate = null)
 	{
+		$this->import('Database');
+
 		$time = time();
 		$arrDates = array();
-		$this->import('Database');
+
 		$objDates = $this->Database->prepare("SELECT
-		tc.*, td.*,
-		(SELECT count(*) FROM tl_training_participant WHERE pid IN (SELECT id FROM tl_training_registration WHERE pid=td.id) ) as participantCount
-		FROM tl_training_date td
+			tc.*, td.*,
+			(SELECT count(*) FROM tl_training_participant WHERE pid IN (SELECT id FROM tl_training_registration WHERE pid=td.id) ) as participantCount
+			FROM tl_training_date td
 
 
-		LEFT JOIN
-		tl_training_course tc ON td.pid=tc.id
+			LEFT JOIN
+			tl_training_course tc ON td.pid=tc.id
 
-		WHERE
-		td.startDate >= $time AND
-		td.timeForApplication >= $time
-		" . (BE_USER_LOGGED_IN ? '' : " AND published='1'") . "
-		" . ( $intCourse != null ? " AND tc.id=$intCourse " : '') . "
-		" . ( $intCourseDate != null ? " AND td.id=$intCourseDate " : '') . "
+			WHERE
+			td.startDate >= $time AND
+			td.timeForApplication >= $time
+			" . (BE_USER_LOGGED_IN ? '' : " AND published='1'") . "
+			" . ( $intCourse != null ? " AND tc.id=$intCourse " : '') . "
+			" . ( $intCourseDate != null ? " AND td.id=$intCourseDate " : '') . "
 
-		" . ($blnAvailable ? "HAVING participantCount<tc.maxParticipants" : "") ."
+			" . ($blnAvailable ? "HAVING participantCount<tc.maxParticipants" : "") ."
 
-		ORDER BY td.startDate")
+			ORDER BY td.startDate")
 		->execute();
 
 		while ($objDates->next())
@@ -111,7 +115,12 @@ class TrainingManager extends System
 	}
 
 
-	// reformat start-enddates
+	/**
+	 * Reformat start and end dates
+	 * @param int
+	 * @param int|null
+	 * @return string
+	 */
 	private function formatStartAndEndDate($startDateTS, $endDateTS = null)
 	{
 		// mday mon year
@@ -147,9 +156,6 @@ class TrainingManager extends System
 		}
 
 		return sprintf($strFormat, $arrStartDate['mday'], $arrStartDate['mon'], $arrStartDate['year'], $arrEndDate['mday'], $arrEndDate['mon'], $arrEndDate['year']);
-
 	}
-
-
-
 }
+

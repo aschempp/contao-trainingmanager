@@ -25,11 +25,7 @@
 <div id="ajax_data"></div>
 
 <?php if (!$this->tableless): ?>
-
-
-
 <table>
-
 
 <?php
 $participantCnt = 1;
@@ -96,7 +92,6 @@ window.addEvent('domready', function() {
 	});
 });
 </script>
-
 
 </div>
 <!-- indexer::continue -->

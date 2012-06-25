@@ -56,7 +56,6 @@ CREATE TABLE `tl_training_category` (
 
 -- --------------------------------------------------------
 
-
 --
 -- Table `tl_module`
 --
@@ -66,7 +65,7 @@ CREATE TABLE `tl_module` (
   `training_dates_courseId` int(10) unsigned NOT NULL default '0',
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table `tl_traing_registration`
@@ -90,7 +89,7 @@ CREATE TABLE `tl_training_registration` (
   KEY `pid` (`pid`),
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table `tl_training_participant`
@@ -106,5 +105,4 @@ CREATE TABLE `tl_training_participant` (
   PRIMARY KEY  (`id`),
   KEY `pid` (`pid`),
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 

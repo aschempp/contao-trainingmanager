@@ -28,7 +28,6 @@
  */
 
 
-
 /**
  * Table tl_training_course
  */

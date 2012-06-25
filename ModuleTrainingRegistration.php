@@ -28,9 +28,6 @@
  */
 
 
-
-
-
 class ModuleTrainingRegistration extends Module
 {
 
@@ -122,7 +119,7 @@ class ModuleTrainingRegistration extends Module
 
 	}
 
-	// TODO: move down
+
 	/**
 	 * Create a new registration
 	 * @param int
@@ -162,6 +159,13 @@ class ModuleTrainingRegistration extends Module
 	}
 
 
+	/**
+	 * Generate widgets for a given DCA table
+	 * @param string
+	 * @param string
+	 * @param bool
+	 * @return array
+	 */
 	private function generateFields($strTable, $strSuffix='', $blnMandatoryCheck=true)
 	{
 		$this->loadLanguageFile($strTable);

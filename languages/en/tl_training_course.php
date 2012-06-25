@@ -10,12 +10,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation, either
  * version 3 of the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program. If not, please visit the Free
  * Software Foundation website at <http://www.gnu.org/licenses/>.
@@ -23,10 +23,9 @@
  * PHP version 5
  * @copyright  Andreas Schempp 2012
  * @author     Andreas Schempp <andreas@schempp.ch>
- * @author     Jan Reuteler <jan.reuteler@iserv.ch> 
+ * @author     Jan Reuteler <jan.reuteler@iserv.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
-
 
 
 /**
@@ -36,6 +35,7 @@ $GLOBALS['TL_LANG']['tl_training_course']['name']				= array('Name', 'Bitte gebe
 $GLOBALS['TL_LANG']['tl_training_course']['pid']				= array('Kategorie', 'Bitte wählen Sie die Kategorie.');
 $GLOBALS['TL_LANG']['tl_training_course']['price']				= array('Preis', 'Bitte geben sie den Preis an.');
 $GLOBALS['TL_LANG']['tl_training_course']['maxParticipants']	= array('Teilnehmerlimit', 'Bitte geben sie die maximale Anzahl an Teilnehmern an.');
+
 
 /**
  * Buttons
@@ -51,3 +51,4 @@ $GLOBALS['TL_LANG']['tl_training_course']['show']				= array('Kursdetails', 'Det
  * Legends
  */
 $GLOBALS['TL_LANG']['tl_training_course']['name_legend']		= 'Kurs';
+

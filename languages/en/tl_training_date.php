@@ -39,6 +39,7 @@ $GLOBALS['TL_LANG']['tl_training_date']['endDate']      	= array('Enddatum', 'La
 $GLOBALS['TL_LANG']['tl_training_date']['timeForApplication'] = array('Anmeldefrist', 'Bitte geben Sie das letztmögliche Anmeldedatum ein.');
 $GLOBALS['TL_LANG']['tl_training_date']['published']		= array('Kursdatum veröffentlichen', 'Das Kursdatum auf der Webseite anzeigen.');
 
+
 /**
  * Buttons
  */
@@ -48,6 +49,7 @@ $GLOBALS['TL_LANG']['tl_training_date']['copy']				= array('Kursdatum kopieren',
 $GLOBALS['TL_LANG']['tl_training_date']['delete']			= array('Kursdatum löschen', 'Kursdatum ID %s löschen');
 $GLOBALS['TL_LANG']['tl_training_date']['show']				= array('Kursdatumdetails', 'Details des Kursdatums ID %s anzeigen');
 $GLOBALS['TL_LANG']['tl_training_date']['registrations']	= array('Kursteilnehmer.', 'Kursteilnehmer verwalten.');
+
 
 /**
  * Legends

@@ -28,7 +28,6 @@
  */
 
 
-
 /**
  * Table tl_training_registration
  */
@@ -207,9 +206,6 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 		)
 	)
 );
-
-
-
 
 
 class tl_training_registration extends Backend

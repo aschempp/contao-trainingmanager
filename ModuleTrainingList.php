@@ -27,7 +27,7 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
-// Lists the most recent courses
+
 class ModuleTrainingList extends Module
 {
 
@@ -36,6 +36,11 @@ class ModuleTrainingList extends Module
 	 * @var string
 	 */
 	protected $strTemplate = 'mod_training_list';
+
+	/**
+	 * Training manager object
+	 * @var object
+	 */
 	protected $TrainingManager;
 
 
@@ -56,6 +61,7 @@ class ModuleTrainingList extends Module
 
 		return parent::generate();
 	}
+
 
 	protected function compile()
 	{

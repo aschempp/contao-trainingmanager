@@ -27,7 +27,7 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
-// lists the dates of a selected course
+
 class ModuleTrainingDates extends Module
 {
 
@@ -36,6 +36,11 @@ class ModuleTrainingDates extends Module
 	 * @var string
 	 */
 	protected $strTemplate = 'mod_training_dates';
+
+	/**
+	 * Training manager object
+	 * @var object
+	 */
 	protected $TrainingManager;
 
 
@@ -56,6 +61,7 @@ class ModuleTrainingDates extends Module
 
 		return parent::generate();
 	}
+
 
 	protected function compile()
 	{
