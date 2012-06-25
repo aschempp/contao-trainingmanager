@@ -39,13 +39,9 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 	'config' => array
 	(
 		'dataContainer'					=> 'Table',
-//		'label'							=> &$GLOBALS['TL_LANG']['MOD']['rooms'][0],
 		'enableVersioning'				=> true,
-//		'closed'						=> true,
-//		'notEditable'					=> true,
 		'ptable'						=> 'tl_training_date',
 		'ctable'						=> array('tl_training_participant'),
-//		'switchToEdit'					=> true,
 	),
 
 	// List
@@ -59,8 +55,6 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'panelLayout'				=> 'filter;search,limit',
 			'headerFields'				=> array('pid', 'code', 'startDate', 'endDate', 'timeForApplication'),
 			'child_record_callback'		=> array('tl_training_registration', 'listRows')
-//			'paste_button_callback'		=> array('tl_training_registration', 'pasteTag'),
-//			'icon'						=> 'system/modules/inserttags/html/icon.gif',
 		),
 		'global_operations' => array
 		(

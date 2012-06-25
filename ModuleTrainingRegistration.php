@@ -76,27 +76,29 @@ class ModuleTrainingRegistration extends Module
 	{
 		$id = $this->Input->get('coursedate');
 		$this->import('TrainingManager');
+		// get more information about the given course date
 		$courses = $this->TrainingManager->getAvailableCourseDate($id);
 
 		$objTemplate = new FrontendTemplate('mod_training_registration_course');
 		$objTemplate->setData($courses[0]);
 
+		// return html
 		return $objTemplate->parse();
 	}
 
 
 	protected function compile()
 	{
-
 		$this->import('TrainingManager');
 		$courses = $this->TrainingManager->availableCourses();
+
+		// list of courses
 		$this->Template->courses  = $courses;
 
-
 		$arrParticipants = array();
-
 		$arrRegistration = $this->generateFields('tl_training_registration');
 
+		// TODO: have variable number of fields
 		for( $i=0; $i<4; $i++ )
 		{
 			$arrParticipants[] = $this->generateFields('tl_training_participant', $i, ($i > 0 ? false : true));

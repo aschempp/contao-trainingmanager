@@ -46,6 +46,8 @@ class TrainingManager extends System
 		return $this->getCourseDates(true, $intCourse);
 	}
 
+
+	//
 	protected function getCourseDates($blnAvailable, $intCourse = null, $intCourseDate = null)
 	{
 		$time = time();

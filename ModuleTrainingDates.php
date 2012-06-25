@@ -27,6 +27,7 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
+// lists the dates of a selected course
 class ModuleTrainingDates extends Module
 {
 
@@ -35,8 +36,6 @@ class ModuleTrainingDates extends Module
 	 * @var string
 	 */
 	protected $strTemplate = 'mod_training_dates';
-
-
 	protected $TrainingManager;
 
 
@@ -61,6 +60,7 @@ class ModuleTrainingDates extends Module
 	protected function compile()
 	{
 		$this->import('TrainingManager');
+		// select only dates of the selected course
 		$result = $this->TrainingManager->allCourses($this->training_dates_courseId);
 		$this->Template->data = $result;
 	}

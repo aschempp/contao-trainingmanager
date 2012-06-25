@@ -37,6 +37,8 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['training_dates'] 	= '{title_legend}
 /**
  * Add fields to tl_module
  */
+
+// Maximum number of participants
 $GLOBALS['TL_DCA']['tl_module']['fields']['training_list_numberOfItems'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['training_list_numberOfItems'],
@@ -46,6 +48,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['training_list_numberOfItems'] = array
 	'eval'                    => array('mandatory'=>true, 'rgxp'=>'digit', 'tl_class'=>'w50')
 );
 
+// Redirect-page
 $GLOBALS['TL_DCA']['tl_module']['fields']['jumpTo'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['jumpTo'],
@@ -54,7 +57,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['jumpTo'] = array
 	'eval'                    => array('fieldType'=>'radio')
 );
 
-
+// Field to select the course
 $GLOBALS['TL_DCA']['tl_module']['fields']['training_dates_courseId'] = array
 (
 	'label'                  	=> &$GLOBALS['TL_LANG']['tl_module']['training_dates_courseId'],
@@ -66,11 +69,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['training_dates_courseId'] = array
 	'eval'                    	=> array('doNotCopy'=>true, 'mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50')
 );
 
-
-
-
-
-$GLOBALS['TL_LANG']['tl_module']['jumpTo']         = array('Weiterleitungsseite', 'Bitte wählen Sie die Seite aus, zu der Besucher beim Anklicken eines Links oder Abschicken eines Formulars weitergeleitet werden.');
 
 
 /**
@@ -103,7 +101,6 @@ class tl_module_training_list extends Backend
 		$arrModules = array();
 	}
 }
-
 
 
 
