@@ -28,10 +28,11 @@
  */
 
 
-
-// Palettes
-$GLOBALS['TL_DCA']['tl_module']['palettes']['training_list'] 	= '{title_legend},name,headline,type,training_list_numberOfItems;jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['training_dates'] 	= '{title_legend},name,training_dates_courseId;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+/**
+ * Palettes
+ */
+$GLOBALS['TL_DCA']['tl_module']['palettes']['training_list'] 	= '{title_legend},name,headline,type;{config_legend},training_list_numberOfItems;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['training_dates'] 	= '{title_legend},name,headline,type;{config_legend},training_dates_courseId;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 
 /**
@@ -50,10 +51,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['training_dates_courseId'] = array
 (
 	'label'                  	=> &$GLOBALS['TL_LANG']['tl_module']['training_dates_courseId'],
 	'exclude'               	=> true,
-	'filter'                  	=> true,
-	'sorting'					=> true,
 	'inputType'               	=> 'select',
 	'foreignKey'              	=> 'tl_training_course.name',
-	'eval'                    	=> array('doNotCopy'=>true, 'mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50')
+	'eval'                    	=> array('mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50')
 );
 
