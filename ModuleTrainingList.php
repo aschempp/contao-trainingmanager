@@ -66,9 +66,8 @@ class ModuleTrainingList extends Module
 	protected function compile()
 	{
 		$this->import('TrainingManager');
-		$result = $this->TrainingManager->allCourses();
 
-		$this->Template->data = $result;
+		$this->Template->data = $this->TrainingManager->allCourses();
 	}
 }
 

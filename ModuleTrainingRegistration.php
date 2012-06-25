@@ -65,6 +65,8 @@ class ModuleTrainingRegistration extends Module
 			return $objTemplate->parse();
 		}
 
+		$this->import('TrainingManager');
+
 		return parent::generate();
 	}
 
@@ -75,7 +77,6 @@ class ModuleTrainingRegistration extends Module
 	public function generateAjax()
 	{
 		$id = $this->Input->get('coursedate');
-		$this->import('TrainingManager');
 
 		// get more information about the given course date
 		$courses = $this->TrainingManager->getAvailableCourseDate($id);
