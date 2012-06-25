@@ -140,28 +140,3 @@ $GLOBALS['TL_DCA']['tl_training_course'] = array
 	)
 );
 
-
-class tl_training_course extends Backend
-{
-
-	/**
-	 * Add an image to each record
-	 * @param array
-	 * @param string
-	 * @return string
-	 */
-	public function addIcon($row, $label)
-	{
-		$image = 'published';
-
-		if (!$row['published'] || (strlen($row['start']) && $row['start'] > time()) || (strlen($row['stop']) && $row['stop'] < time()))
-		{
-			$image = 'un'.$image;
-		}
-
-		return sprintf('<div class="list_icon" style="background-image:url(\'system/themes/%s/images/%s.gif\');">%s</div>', $this->getTheme(), $image, $label);
-	}
-}
-
-
-

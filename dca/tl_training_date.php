@@ -10,12 +10,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation, either
  * version 3 of the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program. If not, please visit the Free
  * Software Foundation website at <http://www.gnu.org/licenses/>.
@@ -23,7 +23,7 @@
  * PHP version 5
  * @copyright  Andreas Schempp 2012
  * @author     Andreas Schempp <andreas@schempp.ch>
- * @author     Jan Reuteler <jan.reuteler@iserv.ch> 
+ * @author     Jan Reuteler <jan.reuteler@iserv.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
@@ -39,7 +39,7 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 	(
 		'dataContainer'					=> 'Table',
 		'enableVersioning'				=> true,
-		'ctable'						=> array('tl_training_registration'),		
+		'ctable'						=> array('tl_training_registration'),
 	),
 
 	// List
@@ -135,7 +135,7 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 			'label'                   	=> &$GLOBALS['TL_LANG']['tl_training_date']['startDate'],
 			'exclude'                 	=> true,
 			'sorting'					=> true,
-			'flag'						=> 8, 
+			'flag'						=> 8,
 			'inputType'               	=> 'text',
 			'eval'                    	=> array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard')
 		),
@@ -143,7 +143,7 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 		(
 			'label'                   	=> &$GLOBALS['TL_LANG']['tl_training_date']['endDate'],
 			'exclude'                 	=> true,
-			'flag'						=> 8, 
+			'flag'						=> 8,
 			'inputType'               	=> 'text',
 			'eval'                    	=> array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard')
 		),
@@ -164,27 +164,4 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 		)
 	)
 );
-
-
-class tl_training_date extends Backend
-{
-
-	/**
-	 * Add an image to each record
-	 * @param array
-	 * @param string
-	 * @return string
-	 */
-	public function addIcon($row, $label)
-	{
-		$image = 'published';
-
-		if (!$row['published'] || (strlen($row['start']) && $row['start'] > time()) || (strlen($row['stop']) && $row['stop'] < time()))
-		{
-			$image = 'un'.$image;
-		}
-
-		return sprintf('<div class="list_icon" style="background-image:url(\'system/themes/%s/images/%s.gif\');">%s</div>', $this->getTheme(), $image, $label);
-	}
-}
 

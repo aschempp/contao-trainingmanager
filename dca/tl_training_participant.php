@@ -81,13 +81,6 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 				'href'					=> 'act=copy',
 				'icon'					=> 'copy.gif'
 			),
-			'cut' => array
-			(
-				'label'					=> &$GLOBALS['TL_LANG']['tl_training_participant']['cut'],
-				'href'					=> 'act=paste&amp;mode=cut',
-				'icon'					=> 'cut.gif',
-				'attributes'			=> 'onclick="Backend.getScrollOffset();"'
-			),
 			'delete' => array
 			(
 				'label'					=> &$GLOBALS['TL_LANG']['tl_training_participant']['delete'],
@@ -113,7 +106,6 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 	// Fields
 	'fields' => array
 	(
-		// registration-parent of the given participant
 		'pid' => array
 		(
 			'label'                  	=> &$GLOBALS['TL_LANG']['tl_training_registration']['id'],
@@ -126,12 +118,12 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 		),
 		'gender' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_training_participant']['gender'],
-			'exclude'                 => true,
-			'inputType'               => 'select',
-			'options'                 => array('male', 'female'),
-			'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-			'eval'                    => array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50')
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_participant']['gender'],
+			'exclude'					=> true,
+			'inputType'					=> 'select',
+			'options'					=> array('male', 'female'),
+			'reference'					=> &$GLOBALS['TL_LANG']['MSC'],
+			'eval'						=> array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50')
 		),
 		'firstname' => array
 		(
@@ -149,27 +141,4 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 		),
 	)
 );
-
-
-class tl_training_participant extends Backend
-{
-
-	/**
-	 * Add an image to each record
-	 * @param array
-	 * @param string
-	 * @return string
-	 */
-	public function addIcon($row, $label)
-	{
-		$image = 'published';
-
-		if (!$row['published'] || (strlen($row['start']) && $row['start'] > time()) || (strlen($row['stop']) && $row['stop'] < time()))
-		{
-			$image = 'un'.$image;
-		}
-
-		return sprintf('<div class="list_icon" style="background-image:url(\'system/themes/%s/images/%s.gif\');">%s</div>', $this->getTheme(), $image, $label);
-	}
-}
 

@@ -79,13 +79,6 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 				'href'					=> 'act=copy',
 				'icon'					=> 'copy.gif'
 			),
-			'cut' => array
-			(
-				'label'					=> &$GLOBALS['TL_LANG']['tl_training_registration']['cut'],
-				'href'					=> 'act=paste&amp;mode=cut',
-				'icon'					=> 'cut.gif',
-				'attributes'			=> 'onclick="Backend.getScrollOffset();"'
-			),
 			'delete' => array
 			(
 				'label'					=> &$GLOBALS['TL_LANG']['tl_training_registration']['delete'],
@@ -124,12 +117,12 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 		),
 		'gender' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_training_registration']['gender'],
-			'exclude'                 => true,
-			'inputType'               => 'select',
-			'options'                 => array('male', 'female'),
-			'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-			'eval'                    => array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'tl_class'=>'w50')
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['gender'],
+			'exclude'					=> true,
+			'inputType'					=> 'select',
+			'options'					=> array('male', 'female'),
+			'reference'					=> &$GLOBALS['TL_LANG']['MSC'],
+			'eval'						=> array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'firstname' => array
 		(
@@ -147,55 +140,55 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 		),
 		'company' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_training_registration']['company'],
-			'exclude'                 => true,
-			'search'                  => true,
-			'sorting'                 => true,
-			'flag'                    => 1,
-			'inputType'               => 'text',
-			'eval'                    => array('maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50')
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['company'],
+			'exclude'					=> true,
+			'search'					=> true,
+			'sorting'					=> true,
+			'flag'						=> 1,
+			'inputType'					=> 'text',
+			'eval'						=> array('maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'street' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_training_registration']['street'],
-			'exclude'                 => true,
-			'search'                  => true,
-			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50')
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['street'],
+			'exclude'					=> true,
+			'search'					=> true,
+			'inputType'					=> 'text',
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'postal' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_training_registration']['postal'],
-			'exclude'                 => true,
-			'search'                  => true,
-			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>32, 'feEditable'=>true, 'tl_class'=>'w50')
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['postal'],
+			'exclude'					=> true,
+			'search'					=> true,
+			'inputType'					=> 'text',
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>32, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'city' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_training_registration']['city'],
-			'exclude'                 => true,
-			'filter'                  => true,
-			'search'                  => true,
-			'sorting'                 => true,
-			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50')
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['city'],
+			'exclude'					=> true,
+			'filter'					=> true,
+			'search'					=> true,
+			'sorting'					=> true,
+			'inputType'					=> 'text',
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'phone' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_training_registration']['phone'],
-			'exclude'                 => true,
-			'search'                  => true,
-			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>64, 'rgxp'=>'phone', 'feEditable'=>true, 'tl_class'=>'w50')
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['phone'],
+			'exclude'					=> true,
+			'search'					=> true,
+			'inputType'					=> 'text',
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>64, 'rgxp'=>'phone', 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'email' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_training_registration']['email'],
-			'exclude'                 => true,
-			'search'                  => true,
-			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'rgxp'=>'email', 'maxlength'=>255, 'unique'=>true, 'decodeEntities'=>true, 'feEditable'=>true, 'tl_class'=>'w50')
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['email'],
+			'exclude'					=> true,
+			'search'					=> true,
+			'inputType'					=> 'text',
+			'eval'						=> array('mandatory'=>true, 'rgxp'=>'email', 'maxlength'=>255, 'unique'=>true, 'decodeEntities'=>true, 'feEditable'=>true, 'tl_class'=>'w50')
 		),
 		'comments' => array
 		(
@@ -212,32 +205,13 @@ class tl_training_registration extends Backend
 {
 
 	/**
-	 * Add the type of input field
+	 * Return a formatted label for the registration
 	 * @param array
 	 * @return string
 	 */
 	public function listRows($arrRow)
 	{
-		return '
-		<div class="cte_type ' . $key . '"><strong>' . $arrRow['lastname'] . ' '.$arrRow['firstname'] . '</strong> - ' . $arrRow['company'] . '</div>'."\n";
-	}
-
-	/**
-	 * Add an image to each record
-	 * @param array
-	 * @param string
-	 * @return string
-	 */
-	public function addIcon($row, $label)
-	{
-		$image = 'published';
-
-		if (!$row['published'] || (strlen($row['start']) && $row['start'] > time()) || (strlen($row['stop']) && $row['stop'] < time()))
-		{
-			$image = 'un'.$image;
-		}
-
-		return sprintf('<div class="list_icon" style="background-image:url(\'system/themes/%s/images/%s.gif\');">%s</div>', $this->getTheme(), $image, $label);
+		return '<div class="cte_type ' . $key . '"><strong>' . $arrRow['lastname'] . ' '.$arrRow['firstname'] . '</strong> - ' . $arrRow['company'] . '</div>'."\n";
 	}
 }
 

@@ -37,8 +37,6 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['training_dates'] 	= '{title_legend}
 /**
  * Add fields to tl_module
  */
-
-// Maximum number of course dates in the list
 $GLOBALS['TL_DCA']['tl_module']['fields']['training_list_numberOfItems'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['training_list_numberOfItems'],
@@ -48,16 +46,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['training_list_numberOfItems'] = array
 	'eval'                    => array('mandatory'=>true, 'rgxp'=>'digit', 'tl_class'=>'w50')
 );
 
-// Redirect-page
-$GLOBALS['TL_DCA']['tl_module']['fields']['jumpTo'] = array
-(
-	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['jumpTo'],
-	'exclude'                 => true,
-	'inputType'               => 'pageTree',
-	'eval'                    => array('fieldType'=>'radio')
-);
-
-// Field to select the course
 $GLOBALS['TL_DCA']['tl_module']['fields']['training_dates_courseId'] = array
 (
 	'label'                  	=> &$GLOBALS['TL_LANG']['tl_module']['training_dates_courseId'],
@@ -68,39 +56,4 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['training_dates_courseId'] = array
 	'foreignKey'              	=> 'tl_training_course.name',
 	'eval'                    	=> array('doNotCopy'=>true, 'mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50')
 );
-
-
-
-/**
- * Class tl_module_news
- *
- * Provide miscellaneous methods that are used by the data configuration array.
- * @copyright  Leo Feyer 2005-2012
- * @author     Leo Feyer <http://www.contao.org>
- * @package    Controller
- */
-class tl_module_training_list extends Backend
-{
-
-	/**
-	 * Import the back end user object
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-		$this->import('BackendUser', 'User');
-	}
-
-
-	/**
-	 * Get all news reader modules and return them as array
-	 * @return array
-	 */
-	public function getReaderModules()
-	{
-		$arrModules = array();
-	}
-}
-
-
 
