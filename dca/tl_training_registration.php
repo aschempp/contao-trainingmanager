@@ -10,12 +10,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation, either
  * version 3 of the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program. If not, please visit the Free
  * Software Foundation website at <http://www.gnu.org/licenses/>.
@@ -23,7 +23,7 @@
  * PHP version 5
  * @copyright  Andreas Schempp 2012
  * @author     Andreas Schempp <andreas@schempp.ch>
- * @author     Jan Reuteler <jan.reuteler@iserv.ch> 
+ * @author     Jan Reuteler <jan.reuteler@iserv.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
@@ -114,7 +114,7 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 	(
 		'default'						=> '{name_legend},firstname,lastname,company,street,postal,city,phone,email,comments',
 	),
-	
+
 
 	// Fields
 	'fields' => array
@@ -229,9 +229,9 @@ class tl_training_registration extends Backend
 	public function listRows($arrRow)
 	{
 		return '
-		<div class="cte_type ' . $key . '"><strong>' . $arrRow['lastname'] . ' '.$arrRow['firstname'] . '</strong> - ' . $arrRow['company'] . '</div>'."\n";		
+		<div class="cte_type ' . $key . '"><strong>' . $arrRow['lastname'] . ' '.$arrRow['firstname'] . '</strong> - ' . $arrRow['company'] . '</div>'."\n";
 	}
-	
+
 	/**
 	 * Add an image to each record
 	 * @param array

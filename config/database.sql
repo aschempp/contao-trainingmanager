@@ -7,9 +7,9 @@
 -- *                                                        *
 -- **********************************************************
 
--- 
+--
 -- Table `tl_training_date`
--- 
+--
 
 CREATE TABLE `tl_training_date` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -26,9 +26,9 @@ CREATE TABLE `tl_training_date` (
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Table `tl_training_course`
--- 
+--
 
 CREATE TABLE `tl_training_course` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -43,9 +43,9 @@ CREATE TABLE `tl_training_course` (
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Table `tl_training_category`
--- 
+--
 
 CREATE TABLE `tl_training_category` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -57,19 +57,20 @@ CREATE TABLE `tl_training_category` (
 -- --------------------------------------------------------
 
 
--- 
+--
 -- Table `tl_module`
--- 
+--
 
 CREATE TABLE `tl_module` (
   `training_list_numberOfItems` int(10) unsigned NOT NULL default '0',
+  `training_dates_courseId` int(10) unsigned NOT NULL default '0',
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 
--- 
+--
 -- Table `tl_traing_registration`
--- 
+--
 
 CREATE TABLE `tl_training_registration` (
   `id` int(10) unsigned NOT NULL auto_increment,
@@ -91,9 +92,9 @@ CREATE TABLE `tl_training_registration` (
 
 
 
--- 
+--
 -- Table `tl_training_participant`
--- 
+--
 
 CREATE TABLE `tl_training_participant` (
   `id` int(10) unsigned NOT NULL auto_increment,

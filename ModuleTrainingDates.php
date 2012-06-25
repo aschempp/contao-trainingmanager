@@ -60,12 +60,9 @@ class ModuleTrainingDates extends Module
 
 	protected function compile()
 	{
-		/*
-		$intCourse = 5;
 		$this->import('TrainingManager');
-		$result = $this->TrainingManager->allCourses($intCourse);
+		$result = $this->TrainingManager->allCourses($this->training_dates_courseId);
 		$this->Template->data = $result;
-		*/
 	}
 }
 
