@@ -6,9 +6,7 @@
 <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
 <?php endif; ?>
 
-
-
-<form action="<?php echo $this->action; ?>" id="<?php echo $this->formId; ?>" method="post" enctype="<?php echo $this->enctype; ?>">
+<form action="<?php echo $this->action; ?>" method="post">
 <div class="formbody">
 <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>" />
 <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}" />
@@ -17,7 +15,7 @@
 <table>
 
 <tr>
-<td colspan=2>	
+<td colspan=2>
 <?php
 
 	$arrCourses = array();
@@ -25,7 +23,7 @@
 	foreach($this->courses as $course) {
 		$strHtml .= '<option id='.$course['id'].'>'.$course['name'].': '.$course['dateRange'].'</option>';
 	}
-		
+
 	echo "<select>$strHtml</select>";
 
 ?>
@@ -51,19 +49,19 @@
 <td><br></td>
 </tr>
 
-<?php 
+<?php
 $participantCnt = 1;
-foreach($this->participants as $fields) 
-{	
+foreach($this->participants as $fields)
+{
 	echo '<tr><td>'.$participantCnt.'. Teilnehmer</td></tr>';
-	foreach($fields as $data) 
+	foreach($fields as $data)
 	{
 		echo $data->parse();
 	}
 	$participantCnt++;
-	
+
 }
-	
+
 ?>
 </table>
 
@@ -76,16 +74,16 @@ foreach($this->participants as $fields)
 
 <table>
 
-<?php 
+<?php
 
-foreach($this->registration as $data) 
-{	
+foreach($this->registration as $data)
+{
 	echo $data->parse();
 }
-	
+
 ?>
 
-<tr>	
+<tr>
 	<td class="col_1 col_last"><div class="submit_container"><input type="submit" class="submit" value="<?php echo $this->slabel; ?>" /></div></td>
 </tr>
 
@@ -95,7 +93,7 @@ foreach($this->registration as $data)
 <?php echo $this->fields; ?>
 </div>
 <div class="submit_container">
-<input type="submit" class="submit" value="<?php echo $this->slabel; ?>" /> 
+<input type="submit" class="submit" value="<?php echo $this->slabel; ?>" />
 </div>
 <?php endif; ?>
 </div>
