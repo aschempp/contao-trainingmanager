@@ -38,7 +38,7 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['training_dates'] 	= '{title_legend}
  * Add fields to tl_module
  */
 
-// Maximum number of participants
+// Maximum number of course dates in the list
 $GLOBALS['TL_DCA']['tl_module']['fields']['training_list_numberOfItems'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['training_list_numberOfItems'],
