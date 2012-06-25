@@ -59,17 +59,16 @@ class ModuleTrainingDates extends Module
 			return $objTemplate->parse();
 		}
 
+		$this->import('TrainingManager');
+
 		return parent::generate();
 	}
 
 
 	protected function compile()
 	{
-		$this->import('TrainingManager');
-
 		// select only dates of the selected course
-		$result = $this->TrainingManager->allCourses($this->training_dates_courseId);
-		$this->Template->data = $result;
+		$this->Template->data = $this->TrainingManager->allCourses($this->training_dates_courseId);
 	}
 }
 
