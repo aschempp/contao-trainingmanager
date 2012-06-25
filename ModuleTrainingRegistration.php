@@ -72,10 +72,14 @@ class ModuleTrainingRegistration extends Module
 	}
 
 
+	/**
+	 * Serverside ajax-api
+	 */
 	public function generateAjax()
 	{
 		$id = $this->Input->get('coursedate');
 		$this->import('TrainingManager');
+
 		// get more information about the given course date
 		$courses = $this->TrainingManager->getAvailableCourseDate($id);
 
@@ -119,6 +123,12 @@ class ModuleTrainingRegistration extends Module
 	}
 
 	// TODO: move down
+	/**
+	 * Create a new registration
+	 * @param int
+	 * @param array
+	 * @param array
+	 */
 	protected function createNewRegistration($intCourse, $arrRegistration, $arrParticipants)
 	{
 		$time = time();
@@ -150,6 +160,7 @@ class ModuleTrainingRegistration extends Module
 		}
 
 	}
+
 
 	private function generateFields($strTable, $strSuffix='', $blnMandatoryCheck=true)
 	{

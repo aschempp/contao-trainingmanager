@@ -31,23 +31,44 @@
 class TrainingManager extends System
 {
 
+	/**
+	 * Returns a list of available course dates
+	 * @param int
+	 * @return array
+	 */
 	public function getAvailableCourseDate($intCourseDate)
 	{
 		return $this->getCourseDates(true, null, $intCourseDate);
 	}
 
+	/**
+	 * Returns all courses
+	 * @param int
+	 * @return array
+	 */
 	public function allCourses($intCourse = null)
 	{
 		return $this->getCourseDates(false, $intCourse, null);
 	}
 
+	/**
+	 * Returns available courses
+	 * @param int
+	 * @return array
+	 */
 	public function availableCourses($intCourse = null)
 	{
 		return $this->getCourseDates(true, $intCourse);
 	}
 
 
-	//
+	/**
+	 * Returns a list of course dates
+	 * @param bool
+	 * @param int
+	 * @param int
+	 * @return array
+	 */
 	protected function getCourseDates($blnAvailable, $intCourse = null, $intCourseDate = null)
 	{
 		$time = time();
@@ -88,7 +109,6 @@ class TrainingManager extends System
 
 		return $arrDates;
 	}
-
 
 
 	// reformat start-enddates
