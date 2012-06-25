@@ -1,0 +1,28 @@
+<h1>Training Dates</h1>
+<!-- indexer::stop -->
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+
+<div class='courseDates'>
+<h3>Kurstermine</h3>
+<!-- loop and print training-date-list -->
+
+<table>
+<?php foreach($this->data as $row): ?>
+<tr>
+	<td><div class="date"><?php echo $row['dateRange']; ?></div></td>
+	<td><div class="bookedOut"><?php echo ($row['available'] > 0 ? $row['available'] : 'ausgebucht'); ?></div></td>
+</tr>
+<?php endforeach; ?>
+</table>
+
+
+</div>
+
+
+</div>
+<!-- indexer::continue -->

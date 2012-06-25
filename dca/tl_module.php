@@ -34,6 +34,10 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['training_list'] = '{title_legend},n
 
 
 
+$GLOBALS['TL_DCA']['tl_module']['palettes']['training_dates'] = '{title_legend},name';
+
+
+
 
 /**
  * Add fields to tl_module
@@ -54,6 +58,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['jumpTo'] = array
 	'inputType'               => 'pageTree',
 	'eval'                    => array('fieldType'=>'radio')
 );
+
+
 
 
 $GLOBALS['TL_LANG']['tl_module']['jumpTo']         = array('Weiterleitungsseite', 'Bitte wählen Sie die Seite aus, zu der Besucher beim Anklicken eines Links oder Abschicken eines Formulars weitergeleitet werden.');

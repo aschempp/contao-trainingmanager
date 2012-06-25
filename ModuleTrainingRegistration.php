@@ -10,12 +10,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation, either
  * version 3 of the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program. If not, please visit the Free
  * Software Foundation website at <http://www.gnu.org/licenses/>.
@@ -23,7 +23,7 @@
  * PHP version 5
  * @copyright  Andreas Schempp 2012
  * @author     Andreas Schempp <andreas@schempp.ch>
- * @author     Jan Reuteler <jan.reuteler@iserv.ch> 
+ * @author     Jan Reuteler <jan.reuteler@iserv.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  */
 
@@ -39,20 +39,20 @@ class ModuleTrainingRegistration extends Module
 	 * @var string
 	 */
 	protected $strTemplate = 'mod_training_registration';
-	
+
 	/**
 	 * Form id
 	 * @var string
 	 */
 	protected $strFormId = 'tl_training_registration';
-	
+
 	/**
 	 * Submitable
 	 * @var boolean
 	 */
 	protected $doNotSubmit = false;
-	
-	
+
+
 	public function generate()
 	{
 		if (TL_MODE == 'BE')
@@ -67,83 +67,96 @@ class ModuleTrainingRegistration extends Module
 
 			return $objTemplate->parse();
 		}
-		
+
 		return parent::generate();
 	}
-	
-	
+
+
+	public function generateAjax()
+	{
+		$id = $this->Input->get('coursedate');
+		$this->import('TrainingManager');
+		$courses = $this->TrainingManager->getAvailableCourseDate($id);
+
+		$objTemplate = new FrontendTemplate('mod_training_registration_course');
+		$objTemplate->setData($courses[0]);
+
+		return $objTemplate->parse();
+	}
+
+
 	protected function compile()
 	{
-	
+
 		$this->import('TrainingManager');
 		$courses = $this->TrainingManager->availableCourses();
 		$this->Template->courses  = $courses;
-		
-			
+
+
 		$arrParticipants = array();
 
-		$arrRegistration = $this->generateFields('tl_training_registration'); 
+		$arrRegistration = $this->generateFields('tl_training_registration');
 
 		for( $i=0; $i<4; $i++ )
 		{
 			$arrParticipants[] = $this->generateFields('tl_training_participant', $i, ($i > 0 ? false : true));
 		}
 
-		//$this->Template->slabel = specialchars($GLOBALS['TL_LANG']['MSC']['register']);
 		$this->Template->formId = $this->strFormId;
 		$this->Template->slabel = "Submit..";
 		$this->Template->action = $this->getIndexFreeRequest();
 		$this->Template->registration = $arrRegistration;
 		$this->Template->participants = $arrParticipants;
-		
+
 		// Create new user if there are no errors
 		if ($this->Input->post('FORM_SUBMIT') == $this->strFormId && !$this->doNotSubmit)
 		{
-			$this->createNewRegistration($arrRegistration, $arrParticipants);
+			$this->createNewRegistration((int) $this->Input->post('pid'), $arrRegistration, $arrParticipants);
 		}
 
 	}
-	
+
 	// TODO: move down
-	protected function createNewRegistration($arrRegistration, $arrParticipants) 
+	protected function createNewRegistration($intCourse, $arrRegistration, $arrParticipants)
 	{
 		$time = time();
 		$arrData = array('tstamp'=>$time);
 
-		foreach($arrRegistration as $field=>$objWidget) 
+		foreach($arrRegistration as $field=>$objWidget)
 		{
 			$arrData[$field] = $objWidget->value;
 		}
-		
+		$arrData['pid'] = $intCourse;
+
 		// Create Registration
 		$objNewRegistration = $this->Database->prepare("INSERT INTO tl_training_registration %s")->set($arrData)->execute();
 		$insertId = $objNewRegistration->insertId;
-				
-		foreach($arrParticipants as $arrParticipant) 
+
+		foreach($arrParticipants as $arrParticipant)
 		{
 			$arrData = array('tstamp'=>$time);
 
-			foreach($arrParticipant as $field=>$objWidget) 
+			foreach($arrParticipant as $field=>$objWidget)
 			{
 				$arrData[$field] = $objWidget->value;
 			}
 
 			$arrData['pid'] = $insertId;
-			
+
 			// Create Participant
 			$objNewParticipant = $this->Database->prepare("INSERT INTO tl_training_participant %s")->set($arrData)->execute();
 		}
-				
+
 	}
-	
-	private function generateFields($strTable, $strSuffix='', $blnMandatoryCheck=true) 
+
+	private function generateFields($strTable, $strSuffix='', $blnMandatoryCheck=true)
 	{
 		$this->loadLanguageFile($strTable);
 		$this->loadDataContainer($strTable);
 
 		$arrWidgets = array();
 		$arrFields = &$GLOBALS['TL_DCA'][$strTable]['fields'];
-		
+
 		if ($blnCheckMandatory == false)
 		{
 			foreach( $arrFields as $field => $arrData)
@@ -154,16 +167,16 @@ class ModuleTrainingRegistration extends Module
 				}
 			}
 		}
-		
-		// Build form	
+
+		// Build form
 		foreach($arrFields as $field => $arrData)
 		{
-			// Don't display hidden formfields 
+			// Don't display hidden formfields
 			if (!$arrData['eval']['feEditable'])
 			{
 				continue;
 			}
-							
+
 			$strClass = $GLOBALS['TL_FFL'][$arrData['inputType']];
 
 			// Continue if the class is not defined
@@ -183,7 +196,7 @@ class ModuleTrainingRegistration extends Module
 			if ($this->Input->post('FORM_SUBMIT') == $this->strFormId)
 			{
 				$objWidget->validate();
-				
+
 				if ($objWidget->hasErrors())
 				{
 					$this->doNotSubmit = true;
