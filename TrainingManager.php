@@ -49,7 +49,7 @@ class TrainingManager extends System
 	 */
 	public function getDatesForCourse($intCourse)
 	{
-		return $this->findCourseDates(false, $intCourse);
+		return $this->findCourseDates(false, (int) $intCourse);
 	}
 
 
@@ -60,7 +60,7 @@ class TrainingManager extends System
 	 */
 	public function getAvailableDatesForCourse($intCourse)
 	{
-		return $this->findCourseDates(true, $intCourse);
+		return $this->findCourseDates(true, (int) $intCourse);
 	}
 
 
@@ -71,7 +71,7 @@ class TrainingManager extends System
 	 */
 	public function getAvailableDate($intDate)
 	{
-		$arrResult = $this->findCourseDates(true, null, $intDate);
+		$arrResult = $this->findCourseDates(true, null, (int) $intDate);
 
 		return is_array($arrResult[0]) ? $arrResult[0] : false;
 	}
@@ -104,8 +104,8 @@ class TrainingManager extends System
 			td.startDate >= $time AND
 			td.timeForApplication >= $time
 			" . (BE_USER_LOGGED_IN ? '' : " AND published='1'") . "
-			" . ( $intCourse != null ? " AND tc.id=$intCourse " : '') . "
-			" . ( $intCourseDate != null ? " AND td.id=$intCourseDate " : '') . "
+			" . ($intCourse !== null ? " AND tc.id=$intCourse " : '') . "
+			" . ($intCourseDate !== null ? " AND td.id=$intCourseDate " : '') . "
 
 			" . ($blnAvailable ? "HAVING participantCount<tc.maxParticipants" : "") ."
 
