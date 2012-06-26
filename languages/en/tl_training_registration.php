@@ -33,14 +33,14 @@
  */
 $GLOBALS['TL_LANG']['tl_training_registration']['firstname']   = array('Vorname', 'Bitte geben Sie den Vornamen ein.');
 $GLOBALS['TL_LANG']['tl_training_registration']['lastname']    = array('Nachname', 'Bitte geben Sie den Nachnamen ein.');
-$GLOBALS['TL_LANG']['tl_training_registration']['gender']      = array('Geschlecht', 'Bitte wählen Sie das Geschlecht.');
-$GLOBALS['TL_LANG']['tl_training_registration']['company']     = array('Firma', 'Hier können Sie einen Firmennamen eingeben.');
-$GLOBALS['TL_LANG']['tl_training_registration']['street']      = array('Straße', 'Bitte geben Sie den Straßennamen und die Hausnummer ein.');
+$GLOBALS['TL_LANG']['tl_training_registration']['gender']      = array('Geschlecht', 'Bitte w√§hlen Sie das Geschlecht.');
+$GLOBALS['TL_LANG']['tl_training_registration']['company']     = array('Firma', 'Hier k√∂nnen Sie einen Firmennamen eingeben.');
+$GLOBALS['TL_LANG']['tl_training_registration']['street']      = array('Stra√üe', 'Bitte geben Sie den Stra√üennamen und die Hausnummer ein.');
 $GLOBALS['TL_LANG']['tl_training_registration']['postal']      = array('Postleitzahl', 'Bitte geben Sie die Postleitzahl ein.');
 $GLOBALS['TL_LANG']['tl_training_registration']['city']        = array('Ort', 'Bitte geben Sie den Namen des Ortes ein.');
 $GLOBALS['TL_LANG']['tl_training_registration']['phone']       = array('Telefonnummer', 'Bitte geben Sie die Telefonnummer ein.');
-$GLOBALS['TL_LANG']['tl_training_registration']['email']       = array('E-Mail-Adresse', 'Bitte geben Sie eine gültige E-Mail-Adresse ein.');
-$GLOBALS['TL_LANG']['tl_training_registration']['comments']    = array('Kommentare', 'Hier können Sie ein Kommentar eingeben.');
+$GLOBALS['TL_LANG']['tl_training_registration']['email']       = array('E-Mail-Adresse', 'Bitte geben Sie eine g√ºltige E-Mail-Adresse ein.');
+$GLOBALS['TL_LANG']['tl_training_registration']['comments']    = array('Kommentare', 'Hier k√∂nnen Sie ein Kommentar eingeben.');
 
 
 /**

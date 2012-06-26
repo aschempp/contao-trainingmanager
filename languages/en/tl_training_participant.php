@@ -33,7 +33,7 @@
  */
 $GLOBALS['TL_LANG']['tl_training_participant']['firstname']   = array('Vorname', 'Bitte geben Sie den Vornamen ein.');
 $GLOBALS['TL_LANG']['tl_training_participant']['lastname']    = array('Nachname', 'Bitte geben Sie den Nachnamen ein.');
-$GLOBALS['TL_LANG']['tl_training_participant']['gender']      = array('Geschlecht', 'Bitte wählen Sie das Geschlecht.');
+$GLOBALS['TL_LANG']['tl_training_participant']['gender']      = array('Geschlecht', 'Bitte w≈†hlen Sie das Geschlecht.');
 
 
 /**

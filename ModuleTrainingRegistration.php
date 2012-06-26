@@ -115,10 +115,6 @@ class ModuleTrainingRegistration extends Module
 			$arrCourses = $this->TrainingManager->getAvailableDates();
 		}
 
-		// list of courses
-		$this->Template->courses  = $arrCourses;
-
-
 		if ($this->Input->post('FORM_SUBMIT') == $this->strFormId)
 		{
 			$arrCourseDate = $this->TrainingManager->getAvailableDate($this->Input->post('pid'));
@@ -146,6 +142,7 @@ class ModuleTrainingRegistration extends Module
 		$this->Template->action = $this->getIndexFreeRequest();
 		$this->Template->registration = $arrRegistration;
 		$this->Template->participants = $arrParticipants;
+		$this->Template->courses  = $arrCourses;
 
 		// Create new user if there are no errors
 		if ($this->Input->post('FORM_SUBMIT') == $this->strFormId && !$this->doNotSubmit)
