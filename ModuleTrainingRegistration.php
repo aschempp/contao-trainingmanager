@@ -194,6 +194,7 @@ class ModuleTrainingRegistration extends Module
 			$objNewParticipant = $this->Database->prepare("INSERT INTO tl_training_participant %s")->set($arrData)->execute();
 		}
 
+		$this->jumpToOrReload($this->jumpTo);
 	}
 
 
