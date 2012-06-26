@@ -11,9 +11,13 @@
 <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>" />
 <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}" />
 
+<?php if($this->courseError): ?><p class="error"><?php echo $this->courseError; ?></p><?php endif; ?>
 <select id="ctrl_pid" name="pid">
+<?php if(!$this->hideEmpty): ?>
+<option value="0">---------- Bitte wählen ----------</option>
+<?php endif; ?>
 <?php foreach($this->courses as $course): ?>
-<option value="<?php echo $course['id']; ?>"><?php echo $course['name']; ?>: <?php echo $course['dateRange']; ?></option>
+<option value="<?php echo $course['id']; ?>"<?php echo ($course['id'] == $this->selectedCourseId ? ' selected' : '');  ?>><?php echo $course['name']; ?>: <?php echo $course['dateRange']; ?></option>
 <?php endforeach; ?>
 </select>
 
@@ -67,7 +71,6 @@ window.addEvent('domready', function() {
 		onComplete: function(json) {
 			document.id('ajax_data').set('html', json.content.html);
 			for( var i=1; i<=<?php echo $this->maxNumberOfParticipants; ?>; i++ ) {
-				console.log(json.content.available);
 				document.id(('participant'+i)).setStyle('display', (i > json.content.available ? 'none' : 'table-row'));
 			}
 		}
@@ -77,8 +80,8 @@ window.addEvent('domready', function() {
 		ajaxObj.send({data:('coursedate='+document.id('ctrl_pid').get('value'))});
 	});
 
-<?php if($this->Input->get('td_id') != ''): ?>
-	ajaxObj.send({data:'coursedate=<?php echo (int)$this->Input->get('td_id'); ?>'});
+<?php if($this->selectedCourseId != ''): ?>
+	ajaxObj.send({data:'coursedate=<?php echo (int)$this->selectedCourseId; ?>'});
 <?php endif; ?>
 });
 </script>

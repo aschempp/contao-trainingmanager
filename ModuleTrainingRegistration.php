@@ -98,22 +98,43 @@ class ModuleTrainingRegistration extends Module
 
 	protected function compile()
 	{
-		$td_id = null;
-		if( $this->Input->get('td_id') )
+		$this->import('TrainingManager');
+
+		if ($this->Input->get('course') != '')
 		{
-			$td_id = (int) $this->Input->get('td_id');
+			$arrCourses = $this->TrainingManager->getAvailableDatesForCourse($this->Input->get('course'));
+
+			if ($this->Input->get('date') != '')
+			{
+				$this->Template->selectedCourseId = $this->Input->get('date');
+				$this->Template->hideEmpty = true;
+			}
+		}
+		else
+		{
+			$arrCourses = $this->TrainingManager->getAvailableDates();
 		}
 
-		$this->import('TrainingManager');
-		$courses = $this->TrainingManager->getAvailableDates($td_id);
-
 		// list of courses
-		$this->Template->courses  = $courses;
+		$this->Template->courses  = $arrCourses;
+
+
+		if ($this->Input->post('FORM_SUBMIT') == $this->strFormId)
+		{
+			$arrCourseDate = $this->TrainingManager->getAvailableDate($this->Input->post('pid'));
+
+			if ($arrCourseDate === false)
+			{
+				$this->doNotSubmit = true;
+				$this->Template->courseError = $GLOBALS['TL_LANG']['ERR']['mdtryNoLabel'];
+			}
+
+			$this->Template->selectedCourseId = $this->Input->post('pid');
+		}
 
 		$arrParticipants = array();
 		$arrRegistration = $this->generateFields('tl_training_registration');
 
-		// TODO: have variable number of fields
 		for( $i=0; $i < $this->maxNumberOfParticipants; $i++ )
 		{
 			$arrParticipants[] = $this->generateFields('tl_training_participant', $i, ($i > 0 ? false : true));
@@ -128,9 +149,8 @@ class ModuleTrainingRegistration extends Module
 		// Create new user if there are no errors
 		if ($this->Input->post('FORM_SUBMIT') == $this->strFormId && !$this->doNotSubmit)
 		{
-			$this->createNewRegistration((int) $this->Input->post('pid'), $arrRegistration, $arrParticipants);
+			$this->createNewRegistration($arrCourseDate['id'], $arrRegistration, $arrParticipants);
 		}
-
 	}
 
 
