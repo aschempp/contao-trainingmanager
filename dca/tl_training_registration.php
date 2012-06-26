@@ -196,7 +196,7 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'exclude'					=> true,
 			'inputType'					=> 'textarea',
 			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true),
-		)
+		),
 	)
 );
 

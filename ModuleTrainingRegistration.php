@@ -101,7 +101,7 @@ class ModuleTrainingRegistration extends Module
 		$arrRegistration = $this->generateFields('tl_training_registration');
 
 		// TODO: have variable number of fields
-		for( $i=0; $i<4; $i++ )
+		for( $i=0; $i < $this->maxNumberOfParticpants; $i++ )
 		{
 			$arrParticipants[] = $this->generateFields('tl_training_participant', $i, ($i > 0 ? false : true));
 		}
