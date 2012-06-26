@@ -13,7 +13,7 @@
 
 <select id="ctrl_pid" name="pid">
 <?php foreach($this->courses as $course): ?>
-<option value="<?php echo $course['id']; ?>"><?php echo $course['name']; ?>: <?php echo $course['dateRange']; ?></option>
+<option value="<?php echo $course['id']; ?>"<?php echo ($course['id'] == $this->Input->get('td_id') ? ' selected' : '');  ?>><?php echo $course['name']; ?>: <?php echo $course['dateRange']; ?></option>
 <?php endforeach; ?>
 </select>
 
