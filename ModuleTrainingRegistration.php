@@ -140,7 +140,32 @@ class ModuleTrainingRegistration extends Module
 		for( $i=0; $i < $this->maxNumberOfParticipants; $i++ )
 		{
 			$blnValidate = ($arrCourseDate['available'] > 0 && $i < $arrCourseDate['available']) ? true : false;
-			$arrParticipants[] = $this->generateFields('tl_training_participant', $i, ($i > 0 ? false : true), $blnValidate);
+			$arrWidgets = $this->generateFields('tl_training_participant', $i, ($i > 0 ? false : true), $blnValidate);
+
+			if ($this->Input->post('FORM_SUBMIT') == $this->strFormId && $blnValidate)
+			{
+				$blnHasData = false;
+				$arrData = array();
+
+				foreach( $arrWidgets as $field => $objWidget )
+				{
+					$varValue = $objWidget->value;
+
+					if ($varValue != '')
+					{
+						$blnHasData = true;
+					}
+
+					$arrData[$field] = $varValue;
+				}
+
+				if ($blnHasData)
+				{
+					$arrParticipantData[] = $arrData;
+				}
+			}
+
+			$arrParticipants[] = $arrWidgets;
 		}
 
 		$this->Template->formId = $this->strFormId;
@@ -153,7 +178,7 @@ class ModuleTrainingRegistration extends Module
 		// Create new user if there are no errors
 		if ($this->Input->post('FORM_SUBMIT') == $this->strFormId && !$this->doNotSubmit)
 		{
-			$this->createNewRegistration($arrCourseDate['id'], $arrRegistration, $arrParticipants);
+			$this->createNewRegistration($arrCourseDate['id'], $arrRegistration, $arrParticipantData);
 		}
 	}
 
@@ -179,18 +204,9 @@ class ModuleTrainingRegistration extends Module
 		$objNewRegistration = $this->Database->prepare("INSERT INTO tl_training_registration %s")->set($arrData)->execute();
 		$insertId = $objNewRegistration->insertId;
 
-		foreach($arrParticipants as $arrParticipant)
+		foreach ($arrParticipants as $arrParticipant)
 		{
-			$arrData = array('tstamp'=>$time);
-
-			foreach($arrParticipant as $field=>$objWidget)
-			{
-				$arrData[$field] = $objWidget->value;
-			}
-
-			$arrData['pid'] = $insertId;
-
-			// Create Participant
+			$arrData = array_merge($arrParticipant, array('tstamp'=>$time, 'pid'=>$insertId));
 			$objNewParticipant = $this->Database->prepare("INSERT INTO tl_training_participant %s")->set($arrData)->execute();
 		}
 
