@@ -19,23 +19,21 @@
 
 <div id="ajax_data"></div>
 
-<?php if (!$this->tableless): ?>
 <table>
-
-<?php
-$participantCnt = 1;
-foreach($this->participants as $fields)
-{
-	echo '<tr><td>'.$participantCnt.'. Teilnehmer</td></tr>';
-	foreach($fields as $data)
-	{
-		echo $data->parse();
-	}
-	$participantCnt++;
-
-}
-
-?>
+	<tr>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+		<th>Vorname<span class="mandatory">*</span></th>
+		<th>Name<span class="mandatory">*</span></th>
+	</tr>
+<?php foreach($this->participants as $i => $fields): ?>
+	<tr id="participant<?php echo ++$i; ?>">
+		<td><?php echo $i; ?>. Teilnehmer</td>
+<?php foreach($fields as $objWidget): ?>
+		<td><?php echo $objWidget->generateWithError(); ?></td>
+<?php endforeach; ?>
+	</tr>
+<?php endforeach; ?>
 </table>
 
 
@@ -44,8 +42,6 @@ foreach($this->participants as $fields)
 <!-- TODO: language file -->
 <h1>Rechnungsaddresse</h1>
 
-
-<table>
 
 <?php
 
@@ -56,19 +52,10 @@ foreach($this->registration as $data)
 
 ?>
 
-<tr>
-	<td class="col_1 col_last"><div class="submit_container"><input type="submit" class="submit" value="<?php echo $this->slabel; ?>" /></div></td>
-</tr>
-
-</table>
-<?php else: ?>
-<div class="fields">
-<?php echo $this->fields; ?>
-</div>
 <div class="submit_container">
 <input type="submit" class="submit" value="<?php echo $this->slabel; ?>" />
 </div>
-<?php endif; ?>
+
 </div>
 </form>
 
@@ -78,7 +65,11 @@ window.addEvent('domready', function() {
 		url: 'ajax.php?action=fmd&id=<?php echo $this->id; ?>',
 		method: 'get',
 		onComplete: function(json) {
-			document.id('ajax_data').set('html', json.content);
+			document.id('ajax_data').set('html', json.content.html);
+			for( var i=1; i<=<?php echo $this->maxNumberOfParticpants; ?>; i++ ) {
+				console.log(json.content.available);
+				document.id(('participant'+i)).setStyle('display', (i > json.content.available ? 'none' : 'table-row'));
+			}
 		}
 	});
 

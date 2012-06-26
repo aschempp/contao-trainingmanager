@@ -210,7 +210,7 @@ class ModuleTrainingRegistration extends Module
 				continue;
 			}
 
-			$arrData['eval']['tableless'] = false;
+			$arrData['eval']['tableless'] = true;
 			$arrData['eval']['mandatory'] = ($arrData['eval']['mandatory'] && $blnCheckMandatory);
 			$arrData['eval']['required'] = $arrData['eval']['mandatory'];
 
