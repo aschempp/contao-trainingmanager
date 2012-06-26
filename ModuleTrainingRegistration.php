@@ -180,7 +180,7 @@ class ModuleTrainingRegistration extends Module
 	 * @param bool
 	 * @return array
 	 */
-	private function generateFields($strTable, $strSuffix='', $blnMandatoryCheck=true)
+	private function generateFields($strTable, $strSuffix='', $blnMandatoryCheck=true, $blnValidate=true)
 	{
 		$this->loadLanguageFile($strTable);
 		$this->loadDataContainer($strTable);
@@ -224,7 +224,7 @@ class ModuleTrainingRegistration extends Module
 			$objWidget->storeValues = true;
 
 			// Validate input
-			if ($this->Input->post('FORM_SUBMIT') == $this->strFormId)
+			if ($this->Input->post('FORM_SUBMIT') == $this->strFormId && $blnValidate)
 			{
 				$objWidget->validate();
 
