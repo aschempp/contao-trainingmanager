@@ -211,7 +211,16 @@ class tl_training_registration extends Backend
 	 */
 	public function listRows($arrRow)
 	{
-		return '<div class="cte_type ' . $key . '"><strong>' . $arrRow['lastname'] . ' '.$arrRow['firstname'] . '</strong> - ' . $arrRow['company'] . '</div>'."\n";
+		$strBuffer = '<strong>' . $arrRow['lastname'] . ' '.$arrRow['firstname'] . '</strong> - ' . $arrRow['company'] . "\n<ul>";
+
+		$objParticipants = $this->Database->execute("SELECT * FROM tl_training_participant WHERE pid=" . (int) $arrRow['id']);
+
+		while( $objParticipants->next() )
+		{
+			$strBuffer .= '<li>' . $objParticipants->gender . ' ' . $objParticipants->firstname . ' ' . $objParticipants->lastname . '</li>';
+		}
+
+		return $strBuffer . '</ul>';
 	}
 }
 
