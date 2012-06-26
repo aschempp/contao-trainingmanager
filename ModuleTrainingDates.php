@@ -68,7 +68,7 @@ class ModuleTrainingDates extends Module
 	protected function compile()
 	{
 		// select only dates of the selected course
-		$this->Template->data = $this->TrainingManager->allCourses($this->training_dates_courseId);
+		$this->Template->data = $this->TrainingManager->getDatesForCourse($this->training_dates_courseId);
 	}
 }
 

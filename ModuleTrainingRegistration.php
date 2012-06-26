@@ -76,23 +76,30 @@ class ModuleTrainingRegistration extends Module
 	 */
 	public function generateAjax()
 	{
-		$id = $this->Input->get('coursedate');
+		$this->import('TrainingManager');
 
-		// get more information about the given course date
-		$courses = $this->TrainingManager->getAvailableCourseDate($id);
+		$arrCourse = $this->TrainingManager->getAvailableDate($this->Input->get('coursedate'));
+
+		if ($arrCourse === false)
+		{
+			return false;
+		}
 
 		$objTemplate = new FrontendTemplate('mod_training_registration_course');
-		$objTemplate->setData($courses[0]);
+		$objTemplate->setData($arrCourse);
 
-		// return html
-		return $objTemplate->parse();
+		return array
+		(
+			'html'		=> $objTemplate->parse(),
+			'available'	=> $arrCourse['available'],
+		);
 	}
 
 
 	protected function compile()
 	{
 		$this->import('TrainingManager');
-		$courses = $this->TrainingManager->availableCourses();
+		$courses = $this->TrainingManager->getAvailableDates();
 
 		// list of courses
 		$this->Template->courses  = $courses;

@@ -67,7 +67,7 @@ class ModuleTrainingList extends Module
 	{
 		$this->import('TrainingManager');
 
-		$this->Template->data = $this->TrainingManager->allCourses();
+		$this->Template->data = $this->TrainingManager->getAvailableDates();
 	}
 }
 

@@ -32,13 +32,13 @@ class TrainingManager extends System
 {
 
 	/**
-	 * Returns a list of available course dates
+	 * Returns available courses
 	 * @param int
 	 * @return array
 	 */
-	public function getAvailableCourseDate($intCourseDate)
+	public function getAvailableDates()
 	{
-		return $this->getCourseDates(true, null, $intCourseDate);
+		return $this->findCourseDates(true);
 	}
 
 
@@ -47,20 +47,22 @@ class TrainingManager extends System
 	 * @param int
 	 * @return array
 	 */
-	public function allCourses($intCourse = null)
+	public function getDatesForCourse($intCourse)
 	{
-		return $this->getCourseDates(false, $intCourse, null);
+		return $this->findCourseDates(false, $intCourse);
 	}
 
 
 	/**
-	 * Returns available courses
+	 * Returns a list of available course dates
 	 * @param int
 	 * @return array
 	 */
-	public function availableCourses($intCourse = null)
+	public function getAvailableDate($intDate)
 	{
-		return $this->getCourseDates(true, $intCourse);
+		$arrResult = $this->findCourseDates(true, null, $intDate);
+
+		return is_array($arrResult[0]) ? $arrResult[0] : false;
 	}
 
 
@@ -71,7 +73,7 @@ class TrainingManager extends System
 	 * @param int
 	 * @return array
 	 */
-	protected function getCourseDates($blnAvailable, $intCourse = null, $intCourseDate = null)
+	protected function findCourseDates($blnAvailable, $intCourse = null, $intCourseDate = null)
 	{
 		$this->import('Database');
 
@@ -107,7 +109,7 @@ class TrainingManager extends System
 				'location' 				=> 'Zürich-Kloten',
 				'formattedStartDate'	=> $this->parseDate($GLOBALS['TL_CONFIG']['dateFormat'], $objDates->startDate),
 				'formattedEndDate'		=> $this->parseDate($GLOBALS['TL_CONFIG']['dateFormat'], $objDates->endDate),
-				'dateRange'				=> $this->formatStartAndEndDate($objDates->startDate, $objDates->endDate),
+				'dateRange'				=> TrainingManager::formatStartAndEndDate($objDates->startDate, $objDates->endDate),
 			));
 		}
 
@@ -121,7 +123,7 @@ class TrainingManager extends System
 	 * @param int|null
 	 * @return string
 	 */
-	private function formatStartAndEndDate($startDateTS, $endDateTS = null)
+	public static function formatStartAndEndDate($startDateTS, $endDateTS = null)
 	{
 		// mday mon year
 		$arrStartDate = getdate($startDateTS);
