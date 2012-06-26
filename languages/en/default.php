@@ -29,12 +29,15 @@
 
 
 /**
- * Fields
+ * Content Elements
  */
-$GLOBALS['TL_LANG']['tl_content']['training_dates_courseId'] 		= array('Kurs-Id', 'Technische Id des Kurses dessen Termine angezeigt werden sollen.');
+$GLOBALS['TL_LANG']['CTE']['trainingmanager'] 				= 'TrainingManager';
+$GLOBALS['TL_LANG']['CTE']['training_dates'] 				= array('Kursdatums-Liste');
 
 
 /**
- * Legends
+ * Modules
  */
-$GLOBALS['TL_LANG']['tl_content']['config_legend'] 					= 'Kurse';
+$GLOBALS['TL_LANG']['MOD']['trainingmanager'] 				= 'TrainingManager';
+$GLOBALS['TL_LANG']['MOD']['training_list']  			  	= array('Aktuelle Kurse');
+$GLOBALS['TL_LANG']['MOD']['training_registration'] 	  	= array('Registrierungen');
