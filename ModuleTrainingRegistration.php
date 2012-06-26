@@ -137,7 +137,8 @@ class ModuleTrainingRegistration extends Module
 
 		for( $i=0; $i < $this->maxNumberOfParticipants; $i++ )
 		{
-			$arrParticipants[] = $this->generateFields('tl_training_participant', $i, ($i > 0 ? false : true));
+			$blnValidate = ($arrCourseDate['available'] > 0 && $i < $arrCourseDate['available']) ? true : false;
+			$arrParticipants[] = $this->generateFields('tl_training_participant', $i, ($i > 0 ? false : true), $blnValidate);
 		}
 
 		$this->Template->formId = $this->strFormId;
