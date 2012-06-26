@@ -39,6 +39,7 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 	(
 		'dataContainer'					=> 'Table',
 		'enableVersioning'				=> true,
+		'closed'						=> true,
 		'ptable'						=> 'tl_training_date',
 		'ctable'						=> array('tl_training_participant'),
 	),
