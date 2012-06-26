@@ -31,18 +31,26 @@
 /**
  * Palettes
  */
+$GLOBALS['TL_DCA']['tl_content']['palettes']['training_dates'] = '{type_legend},type,headline;{config_legend},training_dates_courseId,training_jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['training_dates'] = '{type_legend},type,headline;{config_legend},training_dates_courseId;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+
 /**
  * Add fields to tl_module
  */
-
 $GLOBALS['TL_DCA']['tl_content']['fields']['training_dates_courseId'] = array
 (
 	'label'                  	=> &$GLOBALS['TL_LANG']['tl_content']['training_dates_courseId'],
 	'exclude'               	=> true,
 	'inputType'               	=> 'select',
 	'foreignKey'              	=> 'tl_training_course.name',
-	'eval'                    	=> array('mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50')
+	'eval'                    	=> array('mandatory'=>true, 'chosen'=>true)
+);
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['training_jumpTo'] = array
+(
+	'label'                  	=> &$GLOBALS['TL_LANG']['tl_content']['training_jumpTo'],
+	'exclude'               	=> true,
+	'inputType'               	=> 'pageTree',
+	'eval'                    	=> array('mandatory'=>true, 'fieldType'=>'radio'),
 );
 

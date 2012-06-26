@@ -31,10 +31,12 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_content']['training_dates_courseId'] 		= array('Kurs-Id', 'Technische Id des Kurses dessen Termine angezeigt werden sollen.');
+$GLOBALS['TL_LANG']['tl_content']['training_dates_courseId'] 	= array('Kurs-Id', 'Technische Id des Kurses dessen Termine angezeigt werden sollen.');
+$GLOBALS['TL_LANG']['tl_content']['training_jumpTo']			= array('Weiterleitungsseite', 'Bitte wählen Sie die Seite aus, zu der Besucher beim Anklicken des Anmeldelinks weitergeleitet werden.');
 
 
 /**
  * Legends
  */
 $GLOBALS['TL_LANG']['tl_content']['config_legend'] 					= 'Kurse';
+

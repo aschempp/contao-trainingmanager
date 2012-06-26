@@ -50,6 +50,8 @@ class ContentTrainingDates extends ContentElement
 
 		// select only dates of the selected course
 		$this->Template->data = $this->TrainingManager->getDatesForCourse($this->training_dates_courseId);
+
+		$this->Template->url = $this->generateFrontendUrl($this->Database->execute("SELECT id,alias FROM tl_page WHERE id=".$this->training_jumpTo)->fetchAssoc()) . '?course=' . $this->training_dates_courseId;
 	}
 }
 

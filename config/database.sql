@@ -74,6 +74,7 @@ CREATE TABLE `tl_module` (
 
 CREATE TABLE `tl_content` (
   `training_dates_courseId` int(10) unsigned NOT NULL default '0',
+  `training_jumpTo` int(10) unsigned NOT NULL default '0',
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
