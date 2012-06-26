@@ -217,7 +217,7 @@ class ModuleTrainingRegistration extends Module
 			}
 
 			$arrData['eval']['tableless'] = true;
-			$arrData['eval']['mandatory'] = ($arrData['eval']['mandatory'] && $blnCheckMandatory);
+			$arrData['eval']['mandatory'] = ($arrData['eval']['mandatory'] && $blnMandatoryCheck);
 			$arrData['eval']['required'] = $arrData['eval']['mandatory'];
 
 			$objWidget = new $strClass($this->prepareForWidget($arrData, $field.$strSuffix, $arrData['default']));
