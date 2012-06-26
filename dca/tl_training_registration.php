@@ -98,31 +98,21 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'						=> '{name_legend},firstname,lastname,company,street,postal,city,phone,email,comments',
+		'default'						=> '{name_legend},gender,firstname,lastname,company,street,postal,city,phone,email,comments',
 	),
 
 
 	// Fields
 	'fields' => array
 	(
-		'pid' => array
-		(
-			'label'                  	=> &$GLOBALS['TL_LANG']['tl_training_registration']['pid'],
-			'exclude'               	=> true,
-			'filter'                  	=> true,
-			'sorting'					=> true,
-			'inputType'               	=> 'select',
-			'foreignKey'              	=> 'tl_training_date.id',
-			'eval'                    	=> array('doNotCopy'=>true, 'mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50')
-		),
 		'gender' => array
 		(
 			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['gender'],
 			'exclude'					=> true,
 			'inputType'					=> 'select',
 			'options'					=> array('male', 'female'),
-			'reference'					=> &$GLOBALS['TL_LANG']['MSC'],
-			'eval'						=> array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'tl_class'=>'w50')
+			'reference'					=> &$GLOBALS['TL_LANG']['tl_training_registration'],
+			'eval'						=> array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'tl_class'=>'clr')
 		),
 		'firstname' => array
 		(
@@ -195,7 +185,7 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['comments'],
 			'exclude'					=> true,
 			'inputType'					=> 'textarea',
-			'eval'						=> array('maxlength'=>255, 'feEditable'=>true),
+			'eval'						=> array('feEditable'=>true, 'tl_class'=>'clr'),
 		),
 	)
 );
@@ -217,7 +207,7 @@ class tl_training_registration extends Backend
 
 		while( $objParticipants->next() )
 		{
-			$strBuffer .= '<li>' . $objParticipants->gender . ' ' . $objParticipants->firstname . ' ' . $objParticipants->lastname . '</li>';
+			$strBuffer .= '<li>' . $GLOBALS['TL_LANG']['tl_training_registration'][$objParticipants->gender] . ' ' . $objParticipants->firstname . ' ' . $objParticipants->lastname . '</li>';
 		}
 
 		return $strBuffer . '</ul>';

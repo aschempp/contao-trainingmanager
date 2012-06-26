@@ -122,7 +122,7 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 			'exclude'					=> true,
 			'inputType'					=> 'select',
 			'options'					=> array('male', 'female'),
-			'reference'					=> &$GLOBALS['TL_LANG']['MSC'],
+			'reference'					=> &$GLOBALS['TL_LANG']['tl_training_participant'],
 			'eval'						=> array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50')
 		),
 		'firstname' => array

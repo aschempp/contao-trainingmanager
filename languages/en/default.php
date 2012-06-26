@@ -34,10 +34,3 @@
 $GLOBALS['TL_LANG']['CTE']['trainingmanager'] 				= 'TrainingManager';
 $GLOBALS['TL_LANG']['CTE']['training_dates'] 				= array('Kursdatums-Liste');
 
-
-/**
- * Modules
- */
-$GLOBALS['TL_LANG']['MOD']['trainingmanager'] 				= 'TrainingManager';
-$GLOBALS['TL_LANG']['MOD']['training_list']  			  	= array('Aktuelle Kurse');
-$GLOBALS['TL_LANG']['MOD']['training_registration'] 	  	= array('Registrierungen');

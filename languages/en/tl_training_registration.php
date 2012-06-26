@@ -33,7 +33,7 @@
  */
 $GLOBALS['TL_LANG']['tl_training_registration']['firstname']   = array('Vorname', 'Bitte geben Sie den Vornamen ein.');
 $GLOBALS['TL_LANG']['tl_training_registration']['lastname']    = array('Nachname', 'Bitte geben Sie den Nachnamen ein.');
-$GLOBALS['TL_LANG']['tl_training_registration']['gender']      = array('Geschlecht', 'Bitte wählen Sie das Geschlecht.');
+$GLOBALS['TL_LANG']['tl_training_registration']['gender']      = array('Anrede', 'Bitte wählen Sie die Anrede.');
 $GLOBALS['TL_LANG']['tl_training_registration']['company']     = array('Firma', 'Hier können Sie einen Firmennamen eingeben.');
 $GLOBALS['TL_LANG']['tl_training_registration']['street']      = array('Straße', 'Bitte geben Sie den Straßennamen und die Hausnummer ein.');
 $GLOBALS['TL_LANG']['tl_training_registration']['postal']      = array('Postleitzahl', 'Bitte geben Sie die Postleitzahl ein.');
@@ -44,7 +44,24 @@ $GLOBALS['TL_LANG']['tl_training_registration']['comments']    = array('Kommenta
 
 
 /**
+ * Buttons
+ */
+$GLOBALS['TL_LANG']['tl_training_registration']['new']		= array('Neue Registrierung', 'Eine neue Registrierung zum Kurstermin hinzufügen');
+$GLOBALS['TL_LANG']['tl_training_registration']['edit']		= array('Registrierung bearbeiten', 'Registrierung ID %s bearbeiten');
+$GLOBALS['TL_LANG']['tl_training_registration']['copy']		= array('Registrierung kopieren', 'Registrierung ID %s kopieren');
+$GLOBALS['TL_LANG']['tl_training_registration']['delete']	= array('Registrierung löschen', 'Registrierung ID %s löschen');
+$GLOBALS['TL_LANG']['tl_training_registration']['show']		= array('Registrierungsdetails', 'Details der Registrierung ID %s anzeigen');
+
+
+/**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_training_registration']['name_legend']	= 'Training Registration';
+$GLOBALS['TL_LANG']['tl_training_registration']['name_legend']	= 'Registrierung';
+
+
+/**
+ * References
+ */
+$GLOBALS['TL_LANG']['tl_training_registration']['male']		= 'Herr';
+$GLOBALS['TL_LANG']['tl_training_registration']['female']	= 'Frau';
 

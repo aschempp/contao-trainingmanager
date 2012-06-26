@@ -33,11 +33,28 @@
  */
 $GLOBALS['TL_LANG']['tl_training_participant']['firstname']   = array('Vorname', 'Bitte geben Sie den Vornamen ein.');
 $GLOBALS['TL_LANG']['tl_training_participant']['lastname']    = array('Nachname', 'Bitte geben Sie den Nachnamen ein.');
-$GLOBALS['TL_LANG']['tl_training_participant']['gender']      = array('Geschlecht', 'Bitte wŠhlen Sie das Geschlecht.');
+$GLOBALS['TL_LANG']['tl_training_participant']['gender']      = array('Anrede', 'Bitte wählen Sie die Anrede.');
+
+
+/**
+ * Buttons
+ */
+$GLOBALS['TL_LANG']['tl_training_participant']['new']		= array('Neuer Teilnehmer', 'Einen neuen Teilnehmer zu Registrierung hinzufügen');
+$GLOBALS['TL_LANG']['tl_training_participant']['edit']		= array('Teilnehmer bearbeiten', 'Teilnehmer ID %s bearbeiten');
+$GLOBALS['TL_LANG']['tl_training_participant']['copy']		= array('Teilnehmer kopieren', 'Teilnehmer ID %s kopieren');
+$GLOBALS['TL_LANG']['tl_training_participant']['delete']	= array('Teilnehmer löschen', 'Teilnehmer ID %s löschen');
+$GLOBALS['TL_LANG']['tl_training_participant']['show']		= array('Teilnehmerdetails', 'Details des Teilnehmers ID %s anzeigen');
 
 
 /**
  * Legends
  */
-$GLOBALS['TL_LANG']['tl_training_participant']['name_legend']	= 'Training Participant';
+$GLOBALS['TL_LANG']['tl_training_participant']['name_legend']	= 'Teilnehmer';
+
+
+/**
+ * References
+ */
+$GLOBALS['TL_LANG']['tl_training_participant']['male']		= 'Herr';
+$GLOBALS['TL_LANG']['tl_training_participant']['female']	= 'Frau';
 
