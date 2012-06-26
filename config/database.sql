@@ -63,6 +63,7 @@ CREATE TABLE `tl_training_category` (
 CREATE TABLE `tl_module` (
   `training_list_numberOfItems` int(10) unsigned NOT NULL default '0',
   `maxNumberOfParticipants` int(10) unsigned NOT NULL default '0',
+  `training_legalText` text NULL,
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

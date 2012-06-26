@@ -32,7 +32,7 @@
  * Palettes
  */
 $GLOBALS['TL_DCA']['tl_module']['palettes']['training_list'] 	= '{title_legend},name,headline,type;{config_legend},training_list_numberOfItems;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['training_registration'] 	= '{title_legend},name,headline,type;{config_legend},maxNumberOfParticipants;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['training_registration'] 	= '{title_legend},name,headline,type;{config_legend},maxNumberOfParticipants,training_legalText;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 
 /**
@@ -53,5 +53,14 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['maxNumberOfParticipants'] = array
 	'default'                 => 0,
 	'exclude'                 => true,
 	'inputType'               => 'text',
-	'eval'                    => array('mandatory'=>true, 'rgxp'=>'digit', 'tl_class'=>'w50')
+	'eval'                    => array('mandatory'=>true, 'rgxp'=>'digit')
 );
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['training_legalText'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['training_legalText'],
+	'exclude'                 => true,
+	'inputType'               => 'textarea',
+	'eval'                    => array('mandatory'=>true, 'rte'=>'tinyMCE')
+);
+

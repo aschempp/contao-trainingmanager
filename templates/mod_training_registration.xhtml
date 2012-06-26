@@ -40,21 +40,19 @@
 <?php endforeach; ?>
 </table>
 
-
 <br/>
 
-<!-- TODO: language file -->
 <h1>Rechnungsaddresse</h1>
 
+<?php foreach($this->registration as $objWidget): ?>
+<?php echo $objWidget->parse(); ?>
+<?php endforeach; ?>
 
-<?php
-
-foreach($this->registration as $data)
-{
-	echo $data->parse();
-}
-
-?>
+<div class="legal">
+<?php if($this->legalError): ?><p class="error"><?php echo $this->legalError; ?></p><?php endif; ?>
+<input type="checkbox" class="checkbox" id="ctrl_legal" name="legal" value="1" />
+<label for="ctrl_legal"><?php echo $this->training_legalText; ?></label>
+</div>
 
 <div class="submit_container">
 <input type="submit" class="submit" value="<?php echo $this->slabel; ?>" />

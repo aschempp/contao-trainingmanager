@@ -33,4 +33,5 @@
  */
 $GLOBALS['TL_LANG']['tl_module']['training_list_numberOfItems'] 	= array('Termin-Limit', 'Anzahl der maximalen Termine.');
 $GLOBALS['TL_LANG']['tl_module']['maxNumberOfParticipants']    		= array('Teilnehmer-Felder', 'Maximale Anzahl Teilnehmer pro Anmeldung.');
+$GLOBALS['TL_LANG']['tl_module']['training_legalText']    			= array('AGB-Text', 'Geben Sie den Text für die AGB-Checkbox ein.');
 

@@ -126,6 +126,12 @@ class ModuleTrainingRegistration extends Module
 			}
 
 			$this->Template->selectedCourseId = $this->Input->post('pid');
+
+			if ($this->Input->post('legal') != '1')
+			{
+				$this->doNotSubmit = true;
+				$this->Template->legalError = $GLOBALS['TL_LANG']['ERR']['mdtryNoLabel'];
+			}
 		}
 
 		$arrParticipants = array();
