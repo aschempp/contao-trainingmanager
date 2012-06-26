@@ -11,7 +11,7 @@
 	<div class="name"><?php echo $row['name']; ?></div>
 	<div class="datestring">Kursbeginn: <?php echo $row['formattedStartDate']; ?></div>
 	<div class="available"><?php echo $row['available']; ?> freie Plätze</div>
-	<a class="register" href="<?php echo $this->url; ?>?td_id=<?php echo $row['id']; ?>">jetzt anmelden</a>
+	<a class="register" href="<?php echo $this->url; ?>?td_id=<?php echo $row['id']; ?>&pid=<?php echo $row['pid']; ?>">jetzt anmelden</a>
 </div>
 <?php endforeach; ?>
 
