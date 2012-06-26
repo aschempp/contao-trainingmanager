@@ -28,47 +28,9 @@
  */
 
 
-class ModuleTrainingDates extends Module
-{
-
-	/**
-	 * Template
-	 * @var string
-	 */
-	protected $strTemplate = 'mod_training_dates';
-
-	/**
-	 * Training manager object
-	 * @var object
-	 */
-	protected $TrainingManager;
-
-
-	public function generate()
-	{
-		if (TL_MODE == 'BE')
-		{
-			$objTemplate = new BackendTemplate('be_wildcard');
-
-			$objTemplate->wildcard = '### TRAINING DATES LIST ###';
-			$objTemplate->title = $this->headline;
-			$objTemplate->id = $this->id;
-			$objTemplate->link = $this->name;
-			$objTemplate->href = $this->Environment->script.'?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
-
-			return $objTemplate->parse();
-		}
-
-		$this->import('TrainingManager');
-
-		return parent::generate();
-	}
-
-
-	protected function compile()
-	{
-		// select only dates of the selected course
-		$this->Template->data = $this->TrainingManager->getDatesForCourse($this->training_dates_courseId);
-	}
-}
+/**
+ * Fields
+ */
+$GLOBALS['TL_LANG']['tl_content']['training_dates_courseId'] 		= array('Kurs-Id', 'Technische Id des Kurses dessen Termine angezeigt werden sollen.');
+$GLOBALS['TL_LANG']['tl_content']['config_legend'] 					= 'Kurse';
 

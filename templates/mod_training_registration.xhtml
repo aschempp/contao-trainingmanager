@@ -66,7 +66,7 @@ window.addEvent('domready', function() {
 		method: 'get',
 		onComplete: function(json) {
 			document.id('ajax_data').set('html', json.content.html);
-			for( var i=1; i<=<?php echo $this->maxNumberOfParticpants; ?>; i++ ) {
+			for( var i=1; i<=<?php echo $this->maxNumberOfParticipants; ?>; i++ ) {
 				console.log(json.content.available);
 				document.id(('participant'+i)).setStyle('display', (i > json.content.available ? 'none' : 'table-row'));
 			}
@@ -76,6 +76,10 @@ window.addEvent('domready', function() {
 	document.id('ctrl_pid').addEvent('change', function() {
 		ajaxObj.send({data:('coursedate='+document.id('ctrl_pid').get('value'))});
 	});
+
+<?php if($this->Input->get('td_id') != ''): ?>
+	ajaxObj.send({data:'coursedate=<?php echo (int)$this->Input->get('td_id'); ?>'});
+<?php endif; ?>
 });
 </script>
 

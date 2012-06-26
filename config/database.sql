@@ -62,11 +62,22 @@ CREATE TABLE `tl_training_category` (
 
 CREATE TABLE `tl_module` (
   `training_list_numberOfItems` int(10) unsigned NOT NULL default '0',
-  `training_dates_courseId` int(10) unsigned NOT NULL default '0',
-  `maxNumberOfParticpants` int(10) unsigned NOT NULL default '0',
+  `maxNumberOfParticipants` int(10) unsigned NOT NULL default '0',
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
+
+
+--
+-- Table `tl_content`
+--
+
+CREATE TABLE `tl_content` (
+  `training_dates_courseId` int(10) unsigned NOT NULL default '0',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
 
 --
 -- Table `tl_traing_registration`

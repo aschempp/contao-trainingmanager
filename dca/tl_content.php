@@ -29,48 +29,20 @@
 
 
 /**
- * Backend modules
+ * Palettes
  */
-array_insert($GLOBALS['BE_MOD'], 1, array
-(
-	'trainingmanager' => array
-	(
-		'training_date' => array
-		(
-			'tables'		=> array('tl_training_date', 'tl_training_registration', 'tl_training_participant'),
-			'icon'			=> 'system/modules/trainingmanager/html/date.png',
-		),
-		'training_course' => array
-		(
-			'tables'		=> array('tl_training_course'),
-			'icon'			=> 'system/modules/trainingmanager/html/course.png',
-		),
-		'training_category' => array
-		(
-			'tables'		=> array('tl_training_category'),
-			'icon'			=> 'system/modules/trainingmanager/html/category.png',
-		)
-	)
-));
 
-
+$GLOBALS['TL_DCA']['tl_content']['palettes']['training_dates'] = '{type_legend},type,headline;{config_legend},training_dates_courseId;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 /**
- * Front end modules
+ * Add fields to tl_module
  */
-$GLOBALS['FE_MOD']['trainingmanager'] = array
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['training_dates_courseId'] = array
 (
-	'training_list'  			=> 'ModuleTrainingList',
-	'training_registration'   	=> 'ModuleTrainingRegistration'
+	'label'                  	=> &$GLOBALS['TL_LANG']['tl_content']['training_dates_courseId'],
+	'exclude'               	=> true,
+	'inputType'               	=> 'select',
+	'foreignKey'              	=> 'tl_training_course.name',
+	'eval'                    	=> array('mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50')
 );
-
-
-/**
- * Front end modules
- */
-$GLOBALS['TL_CTE']['trainingmanager'] = array
-(
-	'training_dates'			=> 'ContentTrainingDates'
-);
-
-
 

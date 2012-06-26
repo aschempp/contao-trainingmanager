@@ -36,9 +36,12 @@ class TrainingManager extends System
 	 * @param int
 	 * @return array
 	 */
-	public function getAvailableDates()
+	public function getAvailableDates($intDate = null)
 	{
-		return $this->findCourseDates(true);
+		if($intDate)
+			return $this->findCourseDates(true, null, $intDate);
+		else
+			return $this->findCourseDates(true);
 	}
 
 

@@ -98,8 +98,14 @@ class ModuleTrainingRegistration extends Module
 
 	protected function compile()
 	{
+		$td_id = null;
+		if( $this->Input->get('td_id') )
+		{
+			$td_id = (int) $this->Input->get('td_id');
+		}
+
 		$this->import('TrainingManager');
-		$courses = $this->TrainingManager->getAvailableDates();
+		$courses = $this->TrainingManager->getAvailableDates($td_id);
 
 		// list of courses
 		$this->Template->courses  = $courses;
@@ -108,7 +114,7 @@ class ModuleTrainingRegistration extends Module
 		$arrRegistration = $this->generateFields('tl_training_registration');
 
 		// TODO: have variable number of fields
-		for( $i=0; $i < $this->maxNumberOfParticpants; $i++ )
+		for( $i=0; $i < $this->maxNumberOfParticipants; $i++ )
 		{
 			$arrParticipants[] = $this->generateFields('tl_training_participant', $i, ($i > 0 ? false : true));
 		}

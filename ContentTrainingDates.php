@@ -28,49 +28,28 @@
  */
 
 
-/**
- * Backend modules
- */
-array_insert($GLOBALS['BE_MOD'], 1, array
-(
-	'trainingmanager' => array
-	(
-		'training_date' => array
-		(
-			'tables'		=> array('tl_training_date', 'tl_training_registration', 'tl_training_participant'),
-			'icon'			=> 'system/modules/trainingmanager/html/date.png',
-		),
-		'training_course' => array
-		(
-			'tables'		=> array('tl_training_course'),
-			'icon'			=> 'system/modules/trainingmanager/html/course.png',
-		),
-		'training_category' => array
-		(
-			'tables'		=> array('tl_training_category'),
-			'icon'			=> 'system/modules/trainingmanager/html/category.png',
-		)
-	)
-));
+class ContentTrainingDates extends ContentElement
+{
+
+	/**
+	 * Template
+	 * @var string
+	 */
+	protected $strTemplate = 'ce_training_dates';
+
+	/**
+	 * Training manager object
+	 * @var object
+	 */
+	protected $TrainingManager;
 
 
-/**
- * Front end modules
- */
-$GLOBALS['FE_MOD']['trainingmanager'] = array
-(
-	'training_list'  			=> 'ModuleTrainingList',
-	'training_registration'   	=> 'ModuleTrainingRegistration'
-);
+	protected function compile()
+	{
+		$this->import('TrainingManager');
 
-
-/**
- * Front end modules
- */
-$GLOBALS['TL_CTE']['trainingmanager'] = array
-(
-	'training_dates'			=> 'ContentTrainingDates'
-);
-
-
+		// select only dates of the selected course
+		$this->Template->data = $this->TrainingManager->getDatesForCourse($this->training_dates_courseId);
+	}
+}
 
