@@ -36,3 +36,11 @@ $GLOBALS['TL_LANG']['MOD']['training_date'] 		= array('Kurs-Termine', 'Termine v
 $GLOBALS['TL_LANG']['MOD']['training_course'] 		= array('Kurse', 'Kurse verwalten.');
 $GLOBALS['TL_LANG']['MOD']['training_category'] 	= array('Kurs-Kategorien', 'Kategorien verwalten.');
 
+
+/**
+ * Frontend modules
+ */
+$GLOBALS['TL_LANG']['FMD']['trainingmanager'] 		= 'Kursverwaltung';
+$GLOBALS['TL_LANG']['FMD']['training_list'] 		= array('Aktuelle Kurse');
+$GLOBALS['TL_LANG']['FMD']['training_registration'] = array('Kurs-Anmeldung');
+
