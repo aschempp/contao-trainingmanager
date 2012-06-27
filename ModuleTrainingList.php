@@ -68,7 +68,7 @@ class ModuleTrainingList extends Module
 		$this->import('TrainingManager');
 
 		$this->Template->url = $this->generateFrontendUrl($this->Database->execute("SELECT id,alias FROM tl_page WHERE id=".$this->jumpTo)->fetchAssoc());
-		$this->Template->data = $this->TrainingManager->getAvailableDates();
+		$this->Template->data = $this->TrainingManager->getAvailableDates($this->training_list_numberOfItems);
 	}
 }
 
