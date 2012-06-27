@@ -55,6 +55,7 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 		(
 			'fields'					=> array('code', 'startDate', 'endDate'),
 			'format'					=> '%s <span style="color:#b3b3b3; padding-left:3px;">%s - %s</span>',
+			'label_callback'			=> array('tl_training_date', 'formatRow'),
 
 		),
 		'global_operations' => array
@@ -165,3 +166,24 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 	)
 );
 
+
+
+class tl_training_date extends Backend
+{
+
+	/**
+	 * Add an image to each record
+	 * @param array
+	 * @param string
+	 * @return string
+	 */
+	public function formatRow($row, $label)
+	{
+		$this->import('TrainingManager');
+		$dateRange =  $this->TrainingManager->formatStartAndEndDate($row['startDate'], $row['endDate']);
+
+		$label = $row['code'].' <span style="color:#b3b3b3; padding-left:3px;">'.$dateRange.'</span>';
+
+		return $label;
+	}
+}
