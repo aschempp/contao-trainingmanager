@@ -36,9 +36,14 @@ class TrainingManager extends System
 	 * @param int
 	 * @return array
 	 */
-	public function getAvailableDates()
+	public function getAvailableDates($intMaxDates = null)
 	{
-		return $this->findCourseDates(true);
+		$arrProperties = array('blnAvailable' => true);
+		if($intMaxDates) {
+			$arrProperties['intMaxDates'] = (int)$intMaxDates;
+		}
+
+		return $this->findCourseDates($arrProperties);
 	}
 
 
@@ -49,7 +54,13 @@ class TrainingManager extends System
 	 */
 	public function getDatesForCourse($intCourse)
 	{
-		return $this->findCourseDates(false, (int) $intCourse);
+		$arrProperties = array
+		(
+			'blnAvailable' 	=> false,
+			'intCourse' 	=> (int) $intCourse
+		);
+
+		return $this->findCourseDates($arrProperties);
 	}
 
 
@@ -60,7 +71,13 @@ class TrainingManager extends System
 	 */
 	public function getAvailableDatesForCourse($intCourse)
 	{
-		return $this->findCourseDates(true, (int) $intCourse);
+		$arrProperties = array
+		(
+			'blnAvailable' 	=> true,
+			'intCourse' 	=> (int) $intCourse
+		);
+
+		return $this->findCourseDates($arrProperties);
 	}
 
 
@@ -71,7 +88,13 @@ class TrainingManager extends System
 	 */
 	public function getAvailableDate($intDate)
 	{
-		$arrResult = $this->findCourseDates(true, null, (int) $intDate);
+		$arrProperties = array
+		(
+			'blnAvailable'	=> true,
+			'intDate' 		=> (int) $intDate
+		);
+
+		$arrResult = $this->findCourseDates($arrProperties);
 
 		return is_array($arrResult[0]) ? $arrResult[0] : false;
 	}
@@ -84,9 +107,12 @@ class TrainingManager extends System
 	 * @param int
 	 * @return array
 	 */
-	protected function findCourseDates($blnAvailable, $intCourse = null, $intCourseDate = null)
+	protected function findCourseDates($arrProperties)
 	{
 		$this->import('Database');
+
+		// create and set variables from properties array
+		extract($arrProperties);
 
 		$time = time();
 		$arrDates = array();
@@ -109,7 +135,11 @@ class TrainingManager extends System
 
 			" . ($blnAvailable ? "HAVING participantCount<tc.maxParticipants" : "") ."
 
-			ORDER BY td.startDate")
+			ORDER BY td.startDate
+
+			" . ($intMaxDates !== null ? " LIMIT 0, $intMaxDates " : ' ') . "
+
+			")
 		->execute();
 
 		while ($objDates->next())
