@@ -86,12 +86,12 @@ class TrainingManager extends System
 	 * @param int
 	 * @return array
 	 */
-	public function getAvailableDate($intDate)
+	public function getAvailableDate($intCourseDate)
 	{
 		$arrProperties = array
 		(
 			'blnAvailable'	=> true,
-			'intDate' 		=> (int) $intDate
+			'intCourseDate'	=> (int) $intCourseDate
 		);
 
 		$arrResult = $this->findCourseDates($arrProperties);
