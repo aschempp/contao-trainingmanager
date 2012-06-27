@@ -147,7 +147,6 @@ class TrainingManager extends System
 			$arrDates[] = array_merge($objDates->row(), array
 			(
 				'available'				=> ($objDates->maxParticipants - $objDates->participantCount),
-				'location' 				=> 'Zürich-Kloten',
 				'formattedStartDate'	=> $this->parseDate($GLOBALS['TL_CONFIG']['dateFormat'], $objDates->startDate),
 				'formattedEndDate'		=> $this->parseDate($GLOBALS['TL_CONFIG']['dateFormat'], $objDates->endDate),
 				'dateRange'				=> TrainingManager::formatStartAndEndDate($objDates->startDate, $objDates->endDate),

@@ -99,7 +99,7 @@ $GLOBALS['TL_DCA']['tl_training_course'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'						=> '{name_legend},name,pid,price,maxParticipants',
+		'default'						=> '{name_legend},name,pid,price,maxParticipants,location,information',
 	),
 
 	// Fields
@@ -111,6 +111,22 @@ $GLOBALS['TL_DCA']['tl_training_course'] = array
 			'exclude'					=> true,
 			'inputType'					=> 'text',
 			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+		),
+
+		'location' => array
+		(
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_course']['location'],
+			'exclude'					=> true,
+			'inputType'					=> 'text',
+			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'feEditable'=>true, 'tl_class'=>'w50')
+		),
+
+		'information' => array
+		(
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_course']['information'],
+			'exclude'					=> true,
+			'inputType'					=> 'textarea',
+			'eval'						=> array('mandatory'=>true, 'feEditable'=>true, 'tl_class'=>'clr'),
 		),
 
 		// name of the parent category

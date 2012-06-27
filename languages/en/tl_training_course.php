@@ -35,6 +35,8 @@ $GLOBALS['TL_LANG']['tl_training_course']['name']				= array('Name', 'Bitte gebe
 $GLOBALS['TL_LANG']['tl_training_course']['pid']				= array('Kategorie', 'Bitte wählen Sie die Kategorie.');
 $GLOBALS['TL_LANG']['tl_training_course']['price']				= array('Preis', 'Bitte geben sie den Preis an.');
 $GLOBALS['TL_LANG']['tl_training_course']['maxParticipants']	= array('Teilnehmerlimit', 'Bitte geben sie die maximale Anzahl an Teilnehmern an.');
+$GLOBALS['TL_LANG']['tl_training_course']['location']			= array('Ort', 'Bitte geben an wo der Kurs durchgeführt wird.');
+$GLOBALS['TL_LANG']['tl_training_course']['information']		= array('Informationen', 'Bitte geben zusätzliche Informationen zu dem Kurs an.');
 
 
 /**
