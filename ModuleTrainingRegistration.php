@@ -169,7 +169,7 @@ class ModuleTrainingRegistration extends Module
 		}
 
 		$this->Template->formId = $this->strFormId;
-		$this->Template->slabel = "Submit..";
+		$this->Template->slabel = "Anmeldung absenden";
 		$this->Template->action = $this->getIndexFreeRequest();
 		$this->Template->registration = $arrRegistration;
 		$this->Template->participants = $arrParticipants;
