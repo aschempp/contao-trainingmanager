@@ -34,7 +34,7 @@
 $GLOBALS['TL_LANG']['tl_training_date']['pid']				= array('Kategorie', 'Bitte wählen Sie die Kurskategorie.');
 $GLOBALS['TL_LANG']['tl_training_date']['code']				= array('Code', 'Bitte geben Sie den Kurs-Code ein.');
 $GLOBALS['TL_LANG']['tl_training_date']['name']				= array('Kursdatum', 'Bitte geben Sie das Kursdatum ein.');
-$GLOBALS['TL_LANG']['tl_training_date']['startDate']    	= array('Startdatum', 'Bitte geben Sie das Startdatum gemäß des globalen Datumsformats ein.');
+$GLOBALS['TL_LANG']['tl_training_date']['startDate']    	= array('Startdatum', 'Bitte geben Sie das Startdatum gemäss des globalen Datumsformats ein.');
 $GLOBALS['TL_LANG']['tl_training_date']['endDate']      	= array('Enddatum', 'Lassen Sie das Feld leer, um ein eintägiges Event zu erstellen.');
 $GLOBALS['TL_LANG']['tl_training_date']['timeForApplication'] = array('Anmeldefrist', 'Bitte geben Sie das letztmögliche Anmeldedatum ein.');
 $GLOBALS['TL_LANG']['tl_training_date']['published']		= array('Kursdatum veröffentlichen', 'Das Kursdatum auf der Webseite anzeigen.');
