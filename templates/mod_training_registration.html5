@@ -26,7 +26,7 @@
 <table>
 	<tr>
 		<th>&nbsp;</th>
-		<th>&nbsp;</th>
+		<th>Anrede<span class="mandatory">*</span></th>
 		<th>Vorname<span class="mandatory">*</span></th>
 		<th>Name<span class="mandatory">*</span></th>
 	</tr>
