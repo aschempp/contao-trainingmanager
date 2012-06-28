@@ -41,6 +41,7 @@ $GLOBALS['TL_LANG']['tl_training_registration']['city']        = array('Ort', 'B
 $GLOBALS['TL_LANG']['tl_training_registration']['phone']       = array('Telefonnummer', 'Bitte geben Sie die Telefonnummer ein.');
 $GLOBALS['TL_LANG']['tl_training_registration']['email']       = array('E-Mail-Adresse', 'Bitte geben Sie eine gültige E-Mail-Adresse ein.');
 $GLOBALS['TL_LANG']['tl_training_registration']['comments']    = array('Kommentare', 'Hier können Sie ein Kommentar eingeben.');
+$GLOBALS['TL_LANG']['tl_training_registration']['participants']= array('Teilnehmer');
 
 
 /**
@@ -57,6 +58,7 @@ $GLOBALS['TL_LANG']['tl_training_registration']['show']		= array('Registrierungs
  * Legends
  */
 $GLOBALS['TL_LANG']['tl_training_registration']['name_legend']	= 'Registrierung';
+$GLOBALS['TL_LANG']['tl_training_registration']['participant_legend'] = 'Teilnehmer Auflistung';
 
 
 /**
@@ -64,4 +66,5 @@ $GLOBALS['TL_LANG']['tl_training_registration']['name_legend']	= 'Registrierung'
  */
 $GLOBALS['TL_LANG']['tl_training_registration']['male']		= 'Herr';
 $GLOBALS['TL_LANG']['tl_training_registration']['female']	= 'Frau';
+
 

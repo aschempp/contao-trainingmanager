@@ -99,7 +99,7 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'						=> '{name_legend},gender,firstname,lastname,company,street,postal,city,phone,email,comments',
+		'default'						=> '{name_legend},gender,firstname,lastname,company,street,postal,city,phone,email,comments;{participant_legend},participants',
 	),
 
 
@@ -188,6 +188,12 @@ $GLOBALS['TL_DCA']['tl_training_registration'] = array
 			'inputType'					=> 'textarea',
 			'eval'						=> array('feEditable'=>true, 'tl_class'=>'clr'),
 		),
+		'participants' => array
+		(
+			'label'						=> &$GLOBALS['TL_LANG']['tl_training_registration']['participants'],
+			'inputType'					=> 'dcaWizard',
+			'foreignTable'				=> 'tl_training_participant',
+		),
 	)
 );
 
@@ -208,7 +214,7 @@ class tl_training_registration extends Backend
 
 		while( $objParticipants->next() )
 		{
-			$strBuffer .= '<li>' . $GLOBALS['TL_LANG']['tl_training_registration'][$objParticipants->gender] . ' ' . $objParticipants->firstname . ' ' . $objParticipants->lastname . '</li>';
+			$strBuffer .= '<li><a href="#?id='.$objParticipants->id.'">' . $GLOBALS['TL_LANG']['tl_training_registration'][$objParticipants->gender] . ' ' . $objParticipants->firstname . ' ' . $objParticipants->lastname . '</a></li>';
 		}
 
 		return $strBuffer . '</ul>';

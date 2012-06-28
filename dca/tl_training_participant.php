@@ -47,15 +47,15 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 	(
 		'sorting' => array
 		(
-			'mode'						=> 1,
-			'fields'					=> array('name'),
+			'mode'						=> 0,
+			'fields'					=> array('lastname'),
 			'flag'						=> 1,
 			'panelLayout'				=> 'filter;search,limit',
 		),
 		'label' => array
 		(
-			'fields'					=> array('name'),
-			'format'					=> '%s',
+			'fields'					=> array('gender', 'firstname', 'lastname'),
+			'format'					=> '%s %s %s',
 		),
 		'global_operations' => array
 		(
@@ -100,22 +100,12 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'						=> '{name_legend},pid,gender,firstname,lastname',
+		'default'						=> '{name_legend},gender,firstname,lastname',
 	),
 
 	// Fields
 	'fields' => array
 	(
-		'pid' => array
-		(
-			'label'                  	=> &$GLOBALS['TL_LANG']['tl_training_registration']['id'],
-			'exclude'               	=> true,
-			'filter'                  	=> true,
-			'sorting'					=> true,
-			'inputType'               	=> 'select',
-			'foreignKey'              	=> 'tl_training_registration.id',
-			'eval'                    	=> array('doNotCopy'=>true, 'mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50')
-		),
 		'gender' => array
 		(
 			'label'						=> &$GLOBALS['TL_LANG']['tl_training_participant']['gender'],
@@ -123,7 +113,7 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 			'inputType'					=> 'select',
 			'options'					=> array('male', 'female'),
 			'reference'					=> &$GLOBALS['TL_LANG']['tl_training_participant'],
-			'eval'						=> array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50')
+			'eval'						=> array('mandatory'=>true, 'includeBlankOption'=>true, 'feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'clr')
 		),
 		'firstname' => array
 		(
