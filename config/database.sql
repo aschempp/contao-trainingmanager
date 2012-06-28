@@ -39,6 +39,7 @@ CREATE TABLE `tl_training_course` (
   `name` varchar(255) NOT NULL default '',
   `location` varchar(255) NOT NULL default '',
   `information` text NULL,
+  `mail_template` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `pid` (`pid`),
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

@@ -178,8 +178,10 @@ class ModuleTrainingRegistration extends Module
 		// Create new user if there are no errors
 		if ($this->Input->post('FORM_SUBMIT') == $this->strFormId && !$this->doNotSubmit)
 		{
-			$this->createNewRegistration($arrCourseDate['id'], $arrRegistration, $arrParticipantData);
+			$this->createNewRegistration($arrCourseDate, $arrRegistration, $arrParticipantData);
 		}
+
+
 	}
 
 
@@ -189,7 +191,7 @@ class ModuleTrainingRegistration extends Module
 	 * @param array
 	 * @param array
 	 */
-	protected function createNewRegistration($intCourse, $arrRegistration, $arrParticipants)
+	protected function createNewRegistration($arrCourseDate, $arrRegistration, $arrParticipants)
 	{
 		$time = time();
 		$arrData = array('tstamp'=>$time);
@@ -198,7 +200,8 @@ class ModuleTrainingRegistration extends Module
 		{
 			$arrData[$field] = $objWidget->value;
 		}
-		$arrData['pid'] = $intCourse;
+		$arrData['pid'] = $arrCourseDate['id'];
+		$strEmail = $arrData['email'];
 
 		// Create Registration
 		$objNewRegistration = $this->Database->prepare("INSERT INTO tl_training_registration %s")->set($arrData)->execute();
@@ -209,6 +212,12 @@ class ModuleTrainingRegistration extends Module
 			$arrData = array_merge($arrParticipant, array('tstamp'=>$time, 'pid'=>$insertId));
 			$objNewParticipant = $this->Database->prepare("INSERT INTO tl_training_participant %s")->set($arrData)->execute();
 		}
+
+		$objCourse = $this->Database->prepare("SELECT * FROM tl_training_course WHERE id=".$arrCourseDate['pid'])->execute();
+		$objCourse->next();
+
+		$objEmail = new EmailTemplate($objCourse->mail_template);
+		$objEmail->send($strEmail);
 
 		$this->jumpToOrReload($this->jumpTo);
 	}

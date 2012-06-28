@@ -99,7 +99,7 @@ $GLOBALS['TL_DCA']['tl_training_course'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'						=> '{name_legend},name,pid,price,maxParticipants,location,information',
+		'default'						=> '{name_legend},name,pid,price,maxParticipants,location,information,mail_template',
 	),
 
 	// Fields
@@ -152,7 +152,14 @@ $GLOBALS['TL_DCA']['tl_training_course'] = array
 			'inputType'					=> 'text',
 			'eval'						=> array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
 		),
-
+		'mail_template' => array
+		(
+			'label'                  	=> &$GLOBALS['TL_LANG']['tl_training_course']['mail_template'],
+			'exclude'               	=> true,
+			'inputType'               	=> 'select',
+			'foreignKey'              	=> 'tl_mail_templates.name',
+			'eval'                    	=> array('doNotCopy'=>true, 'mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50')
+		)
 	)
 );
 
