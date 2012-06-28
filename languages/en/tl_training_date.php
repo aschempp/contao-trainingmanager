@@ -31,7 +31,7 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_training_date']['pid']				= array('Kategorie', 'Bitte wählen Sie die Kurskategorie.');
+$GLOBALS['TL_LANG']['tl_training_date']['pid']				= array('Kurs', 'Bitte wählen Sie den Kurs.');
 $GLOBALS['TL_LANG']['tl_training_date']['code']				= array('Code', 'Bitte geben Sie den Kurs-Code ein.');
 $GLOBALS['TL_LANG']['tl_training_date']['name']				= array('Kursdatum', 'Bitte geben Sie das Kursdatum ein.');
 $GLOBALS['TL_LANG']['tl_training_date']['startDate']    	= array('Startdatum', 'Bitte geben Sie das Startdatum gemäss des globalen Datumsformats ein.');

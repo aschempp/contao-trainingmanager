@@ -95,12 +95,19 @@ $GLOBALS['TL_DCA']['tl_training_date'] = array
 				'href'					=> 'act=show',
 				'icon'					=> 'show.gif'
 			),
+			'toggle' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_training_date']['toggle'],
+				'icon'                => 'visible.gif',
+				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
+				'button_callback'     => array('tl_training_date', 'toggleIcon')
+			),
 			'registrations' => array
 			(
 				'label'					=> &$GLOBALS['TL_LANG']['tl_training_date']['registrations'],
 				'href'					=> 'table=tl_training_registration',
 				'icon'					=> 'system/modules/trainingmanager/html/registrations.png'
-			),
+			)
 		)
 	),
 
@@ -172,6 +179,16 @@ class tl_training_date extends Backend
 {
 
 	/**
+	 * Import the back end user object
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->import('BackendUser', 'User');
+	}
+
+
+	/**
 	 * Add an image to each record
 	 * @param array
 	 * @param string
@@ -186,4 +203,67 @@ class tl_training_date extends Backend
 
 		return $label;
 	}
+
+
+	/**
+	 * Return the "toggle visibility" button
+	 * @param array
+	 * @param string
+	 * @param string
+	 * @param string
+	 * @param string
+	 * @param string
+	 * @return string
+	 */
+	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
+	{
+		if (strlen($this->Input->get('tid')))
+		{
+			$this->toggleVisibility($this->Input->get('tid'), ($this->Input->get('state') == 1));
+			$this->redirect($this->getReferer());
+		}
+
+		// Check permissions AFTER checking the tid, so hacking attempts are logged
+		if (!$this->User->isAdmin && !$this->User->hasAccess('tl_training_date::published', 'alexf'))
+		{
+			return '';
+		}
+
+		$href .= '&amp;tid='.$row['id'].'&amp;state='.($row['published'] ? '' : 1);
+
+		if (!$row['published'])
+		{
+			$icon = 'invisible.gif';
+		}
+
+		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.$this->generateImage($icon, $label).'</a> ';
+	}
+
+
+	/**
+	 * Disable/enable a user group
+	 * @param integer
+	 * @param boolean
+	 */
+	public function toggleVisibility($intId, $blnVisible)
+	{
+		// Check permissions to edit
+		$this->Input->setGet('id', $intId);
+		$this->Input->setGet('act', 'toggle');
+
+		// Trigger the save_callback
+		if (is_array($GLOBALS['TL_DCA']['tl_training_date']['fields']['published']['save_callback']))
+		{
+			foreach ($GLOBALS['TL_DCA']['tl_training_date']['fields']['published']['save_callback'] as $callback)
+			{
+				$this->import($callback[0]);
+				$blnVisible = $this->$callback[0]->$callback[1]($blnVisible, $this);
+			}
+		}
+
+		// Update the database
+		$this->Database->prepare("UPDATE tl_training_date SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
+					   ->execute($intId);
+	}
+
 }
