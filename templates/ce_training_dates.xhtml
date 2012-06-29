@@ -7,7 +7,7 @@
 <?php endif; ?>
 
 <?php foreach($this->data as $row): ?>
-<div class="date"><?php echo $row['dateRange']; ?> <span class="bookedout"><?php echo ($row['available'] ? '' : 'ausgebucht'); ?></span></div>
+<div class="date"><?php echo $row['dateRange']; ?><?php if($row['available'] < 1): ?> <span class="bookedout">ausgebucht</span><?php endif; ?></div>
 <?php endforeach; ?>
 
 <a href="<?php echo $this->url; ?>" class="signup">jetzt anmelden</a>
