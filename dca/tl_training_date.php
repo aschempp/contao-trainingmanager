@@ -196,10 +196,7 @@ class tl_training_date extends Backend
 	 */
 	public function formatRow($row, $label)
 	{
-		$this->import('TrainingManager');
-		$dateRange =  $this->TrainingManager->formatStartAndEndDate($row['startDate'], $row['endDate']);
-
-		$label = $row['code'].' <span style="color:#b3b3b3; padding-left:3px;">'.$dateRange.'</span>';
+		$label = $row['code'].' <span style="color:#b3b3b3; padding-left:3px;">' . TrainingManager::formatStartAndEndDate($row['startDate'], $row['endDate']) . '</span>';
 
 		return $label;
 	}
