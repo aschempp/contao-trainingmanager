@@ -145,9 +145,12 @@ class TrainingManager extends System
 
 		while ($objDates->next())
 		{
+			$intAvailable = $objDates->maxParticipants - $objDates->participantCount;
+
 			$arrDates[] = array_merge($objDates->row(), array
 			(
-				'available'				=> ($objDates->maxParticipants - $objDates->participantCount),
+				'available'				=> $intAvailable,
+				'availableLabel'		=> sprintf($GLOBALS['TL_LANG']['MSC'][($intAvailable == 1 ? 'training_available1' : 'training_available')], $intAvailable),
 				'formattedStartDate'	=> $this->parseDate($GLOBALS['TL_CONFIG']['dateFormat'], $objDates->startDate),
 				'formattedEndDate'		=> $this->parseDate($GLOBALS['TL_CONFIG']['dateFormat'], $objDates->endDate),
 				'dateRange'				=> TrainingManager::formatStartAndEndDate($objDates->startDate, $objDates->endDate),

@@ -10,7 +10,7 @@
 <div>
 	<div class="name"><?php echo $row['name']; ?></div>
 	<div class="datestring">Kursbeginn: <?php echo $row['formattedStartDate']; ?></div>
-	<div class="available"><?php echo ($row['available'] == 1 ? '1 freier Platz' : $row['available'].' freie Plätze' ); ?></div>
+	<div class="available"><?php echo $row['availableLabel']; ?></div>
 	<a class="register" href="<?php echo $this->url; ?>?course=<?php echo $row['pid']; ?>&amp;date=<?php echo $row['id']; ?>">jetzt anmelden</a>
 </div>
 <?php endforeach; ?>
