@@ -15,3 +15,6 @@ Usage
 * Create course-dates
 * Create and configure the desired modules (training registration, training list)
 * Place the module where you like it 
+
+
+**Important:** Requires the "ajax" extension
