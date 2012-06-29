@@ -175,7 +175,7 @@ class TrainingManager extends System
 		$yey = $arrStartDate['year'] == $arrEndDate['year'];
 
 		// No end date or both dates the same
-		if ($endDateTS === null || ($yey && $mem && $ded))
+		if (!$endDateTS || ($yey && $mem && $ded))
 		{
 			$strFormat = '%1$02d.%2$02d.%3$04d';
 		}
