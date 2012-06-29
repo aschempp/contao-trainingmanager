@@ -55,7 +55,7 @@ array_insert($GLOBALS['BE_MOD'], 1, array
 
 
 /**
- * Front end modules
+ * Frontend modules
  */
 $GLOBALS['FE_MOD']['trainingmanager'] = array
 (
@@ -65,7 +65,7 @@ $GLOBALS['FE_MOD']['trainingmanager'] = array
 
 
 /**
- * Front end modules
+ * Content elements
  */
 $GLOBALS['TL_CTE']['trainingmanager'] = array
 (

@@ -38,10 +38,11 @@ class TrainingManager extends System
 	 */
 	public function getAvailableDates($intMaxDates = null)
 	{
-		$arrProperties = array('blnAvailable' => true);
-		if($intMaxDates) {
-			$arrProperties['intMaxDates'] = (int)$intMaxDates;
-		}
+		$arrProperties = array
+		(
+			'blnAvailable'	=> true,
+			'intMaxDates'	=> (intMaxDates === null ? null : (int) $intMaxDates)
+		);
 
 		return $this->findCourseDates($arrProperties);
 	}
