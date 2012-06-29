@@ -57,16 +57,6 @@ $GLOBALS['TL_DCA']['tl_training_participant'] = array
 			'fields'					=> array('gender', 'firstname', 'lastname'),
 			'format'					=> '%s %s %s',
 		),
-		'global_operations' => array
-		(
-			'all' => array
-			(
-				'label'					=> &$GLOBALS['TL_LANG']['MSC']['all'],
-				'href'					=> 'act=select',
-				'class'					=> 'header_edit_all',
-				'attributes'			=> 'onclick="Backend.getScrollOffset();" accesskey="e"'
-			),
-		),
 		'operations' => array
 		(
 			'edit' => array
