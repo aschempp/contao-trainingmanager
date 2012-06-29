@@ -12,7 +12,7 @@
 <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}" />
 
 <?php if($this->courseError): ?><p class="error"><?php echo $this->courseError; ?></p><?php endif; ?>
-<select id="ctrl_pid" name="pid">
+<select id="ctrl_pid" name="pid" class="select<?php if($this->courseError): ?> error<?php endif; ?>">
 <?php if(!$this->hideEmpty): ?>
 <option value="0">---------- Bitte wählen ----------</option>
 <?php endif; ?>
