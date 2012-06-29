@@ -14,7 +14,7 @@
 <?php if($this->courseError): ?><p class="error"><?php echo $this->courseError; ?></p><?php endif; ?>
 <select id="ctrl_pid" name="pid">
 <?php if(!$this->hideEmpty): ?>
-<option value="0">---------- Bitte w‰hlen ----------</option>
+<option value="0">---------- Bitte w√§hlen ----------</option>
 <?php endif; ?>
 <?php foreach($this->courses as $course): ?>
 <option value="<?php echo $course['id']; ?>"<?php echo ($course['id'] == $this->selectedCourseId ? ' selected' : '');  ?>><?php echo $course['name']; ?>: <?php echo $course['dateRange']; ?></option>
