@@ -54,4 +54,5 @@ $GLOBALS['TL_LANG']['tl_training_course']['show']				= array('Kursdetails', 'Det
  * Legends
  */
 $GLOBALS['TL_LANG']['tl_training_course']['name_legend']		= 'Kurs';
+$GLOBALS['TL_LANG']['tl_training_course']['mail_legend']		= 'E-Mail';
 
