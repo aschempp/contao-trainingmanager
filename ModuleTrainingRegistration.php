@@ -213,11 +213,13 @@ class ModuleTrainingRegistration extends Module
 			$objNewParticipant = $this->Database->prepare("INSERT INTO tl_training_participant %s")->set($arrData)->execute();
 		}
 
-		$objCourse = $this->Database->prepare("SELECT * FROM tl_training_course WHERE id=".$arrCourseDate['pid'])->execute();
-		$objCourse->next();
+		$objCourse = $this->Database->prepare("SELECT * FROM tl_training_course WHERE id=?")->execute($arrCourseDate['pid']);
 
-		$objEmail = new EmailTemplate($objCourse->mail_template);
-		$objEmail->send($strEmail);
+		if ($objCourse->mail_template > 0)
+		{
+			$objEmail = new EmailTemplate($objCourse->mail_template);
+			$objEmail->send($strEmail, array_merge($objCourse->row(), $arrCourseDate));
+		}
 
 		$this->jumpToOrReload($this->jumpTo);
 	}
