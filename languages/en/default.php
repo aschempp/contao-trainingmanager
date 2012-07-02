@@ -38,6 +38,6 @@ $GLOBALS['TL_LANG']['CTE']['training_dates'] 				= array('Kursdatums-Liste');
 /**
  * Miscellaneous
  */
-$GLOBALS['TL_LANG']['MSC']['available']						= "%s Plätze verfügbar";
-$GLOBALS['TL_LANG']['MSC']['available1']					= "%s Platz verfügbar";
+$GLOBALS['TL_LANG']['MSC']['training_available']			= "%s PlÃ¤tze verfÃ¼gbar";
+$GLOBALS['TL_LANG']['MSC']['training_available1']			= "%s Platz verfÃ¼gbar";
 
