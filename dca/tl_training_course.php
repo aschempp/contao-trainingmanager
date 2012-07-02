@@ -47,13 +47,13 @@ $GLOBALS['TL_DCA']['tl_training_course'] = array
 		'sorting' => array
 		(
 			'mode'						=> 1,
-			'fields'					=> array('name'),
+			'fields'					=> array('pid', 'name'),
 			'flag'						=> 1,
 			'panelLayout'				=> 'filter;search,limit',
 		),
 		'label' => array
 		(
-			'fields'					=> array('name', 'pid'),
+			'fields'					=> array('name'),
 			'format'					=> '%s',
 		),
 		'global_operations' => array
