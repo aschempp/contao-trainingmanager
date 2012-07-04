@@ -16,9 +16,27 @@
 <?php if(!$this->hideEmpty): ?>
 <option value="0">---------- Bitte wählen ----------</option>
 <?php endif; ?>
-<?php foreach($this->courses as $course): ?>
+<?php
+$lastCategoryName = null;
+foreach($this->courses as $course): ?>
+
+<?php
+if($lastCategoryName != $course['category_name'])
+{
+	// if not first, close previous optgroup
+	if($lastCategoryName != null)
+	{
+		echo '</optgroup>';
+	}
+	// open new optgroup
+	echo '<optgroup label="'.$course['category_name'].'">';
+	$lastCategoryName = $course['category_name'];
+}
+?>
+
 <option value="<?php echo $course['id']; ?>"<?php echo ($course['id'] == $this->selectedCourseId ? ' selected' : '');  ?>><?php echo $course['name']; ?>: <?php echo $course['dateRange']; ?></option>
 <?php endforeach; ?>
+</optgroup>
 </select>
 
 <div id="ajax_data"></div>

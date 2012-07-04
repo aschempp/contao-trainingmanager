@@ -119,13 +119,14 @@ class TrainingManager extends Frontend
 		$arrDates = array();
 
 		$objDates = $this->Database->prepare("SELECT
-			tc.*, td.*,
+			tc.*, td.*, tcat.name as category_name,
 			(SELECT count(*) FROM tl_training_participant WHERE pid IN (SELECT id FROM tl_training_registration WHERE pid=td.id) ) as participantCount
 			FROM tl_training_date td
-
-
 			LEFT JOIN
 			tl_training_course tc ON td.pid=tc.id
+
+			LEFT JOIN
+			tl_training_category tcat ON tc.pid=tcat.id
 
 			WHERE
 			td.startDate >= $time AND
@@ -136,7 +137,7 @@ class TrainingManager extends Frontend
 
 			" . ($blnAvailable ? "HAVING participantCount<tc.maxParticipants" : "") ."
 
-			ORDER BY td.startDate
+			ORDER BY category_name, name, td.startDate
 
 			" . ($intMaxDates !== null ? " LIMIT 0, $intMaxDates " : ' ') . "
 
