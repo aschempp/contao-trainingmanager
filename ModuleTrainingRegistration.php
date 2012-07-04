@@ -194,31 +194,33 @@ class ModuleTrainingRegistration extends Module
 	protected function createNewRegistration($arrCourseDate, $arrRegistration, $arrParticipants)
 	{
 		$time = time();
-		$arrData = array('tstamp'=>$time);
+		$arrRegistrationData = array('tstamp'=>$time, 'pid'=>$arrCourseDate['id']);
+		$arrParticipantNames = array();
 
-		foreach($arrRegistration as $field=>$objWidget)
+		foreach($arrRegistration as $field => $objWidget)
 		{
-			$arrData[$field] = $objWidget->value;
+			$arrRegistrationData[$field] = $objWidget->value;
 		}
-		$arrData['pid'] = $arrCourseDate['id'];
-		$strEmail = $arrData['email'];
 
-		// Create Registration
-		$objNewRegistration = $this->Database->prepare("INSERT INTO tl_training_registration %s")->set($arrData)->execute();
-		$insertId = $objNewRegistration->insertId;
+		$intRegistration = $this->Database->prepare("INSERT INTO tl_training_registration %s")->set($arrRegistrationData)->executeUncached()->insertId;
 
 		foreach ($arrParticipants as $arrParticipant)
 		{
-			$arrData = array_merge($arrParticipant, array('tstamp'=>$time, 'pid'=>$insertId));
-			$objNewParticipant = $this->Database->prepare("INSERT INTO tl_training_participant %s")->set($arrData)->execute();
+			$arrParticipantData = array_merge($arrParticipant, array('tstamp'=>$time, 'pid'=>$intRegistration));
+			$arrParticipantNames = $GLOBALS['TL_LANG']['tl_training_registration'][$arrParticipant['gender']] . ' ' . $arrParticipant['firstname'] . ' ' . $arrParticipant['lastname'];
+			$this->Database->prepare("INSERT INTO tl_training_participant %s")->set($arrParticipantData)->executeUncached();
 		}
 
-		$objCourse = $this->Database->prepare("SELECT * FROM tl_training_course WHERE id=?")->execute($arrCourseDate['pid']);
-
-		if ($objCourse->mail_template > 0)
+		// Send email confirmation to client
+		if ($arrCourseDate['mail_template'] > 0)
 		{
-			$objEmail = new EmailTemplate($objCourse->mail_template);
-			$objEmail->send($strEmail, array_merge($objCourse->row(), $arrCourseDate));
+			$arrTokens = array_merge($arrRegistrationData, $arrCourseDate);
+
+			$arrTokens['participants_html'] = '<ul><li>' . implode('</li><li>', $arrParticipantNames) . '</li></ul>';
+			$arrTokens['participants_text'] = implode("\n", $arrParticipantNames);
+
+			$objEmail = new EmailTemplate($arrCourseDate['mail_template']);
+			$objEmail->send($arrRegistrationData['email'], $arrTokens);
 		}
 
 		$this->jumpToOrReload($this->jumpTo);
