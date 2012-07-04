@@ -28,7 +28,7 @@
  */
 
 
-class TrainingManager extends System
+class TrainingManager extends Frontend
 {
 
 	/**
@@ -203,5 +203,31 @@ class TrainingManager extends System
 
 		return sprintf($strFormat, $arrStartDate['mday'], $arrStartDate['mon'], $arrStartDate['year'], $arrEndDate['mday'], $arrEndDate['mon'], $arrEndDate['year']);
 	}
+
+
+	/**
+	 * Create a insertag that returns the value of a given course-id and fieldname
+	 * @param string
+	 * @return string
+	 */
+	public function replaceTags($strTag)
+	{
+		$arrTag = trimsplit('::', $strTag);
+
+		// check if correct insert tag 'training'
+		if ($arrTag[0] == 'training')
+		{
+			if (isset($arrTag[1]) && isset($arrTag[2]))
+			{
+				$objDates = $this->Database->execute("SELECT * FROM tl_training_course WHERE id=".(int)$arrTag[1]);
+
+				return $objDates->$arrTag[2];
+			}
+		}
+
+		// not our insert-tag
+		return false;
+	}
+
 }
 

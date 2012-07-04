@@ -73,4 +73,5 @@ $GLOBALS['TL_CTE']['trainingmanager'] = array
 );
 
 
+$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('TrainingManager', 'replaceTags');
 
