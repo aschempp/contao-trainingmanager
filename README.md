@@ -15,6 +15,7 @@ Usage
 * Create course-dates
 * Create and configure the desired modules (training registration, training list)
 * Place the module where you like it 
+* Insert-tag: {{training::COURSEID::FIELDNAME}}, returns value of given course-id and fieldname
 
 
 **Important:** Requires the "ajax" extension
