@@ -180,8 +180,6 @@ class ModuleTrainingRegistration extends Module
 		{
 			$this->createNewRegistration($arrCourseDate, $arrRegistration, $arrParticipantData);
 		}
-
-
 	}
 
 
@@ -207,7 +205,7 @@ class ModuleTrainingRegistration extends Module
 		foreach ($arrParticipants as $arrParticipant)
 		{
 			$arrParticipantData = array_merge($arrParticipant, array('tstamp'=>$time, 'pid'=>$intRegistration));
-			$arrParticipantNames = $GLOBALS['TL_LANG']['tl_training_registration'][$arrParticipant['gender']] . ' ' . $arrParticipant['firstname'] . ' ' . $arrParticipant['lastname'];
+			$arrParticipantNames[] = $GLOBALS['TL_LANG']['tl_training_registration'][$arrParticipant['gender']] . ' ' . $arrParticipant['firstname'] . ' ' . $arrParticipant['lastname'];
 			$this->Database->prepare("INSERT INTO tl_training_participant %s")->set($arrParticipantData)->executeUncached();
 		}
 
