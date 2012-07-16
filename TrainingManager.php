@@ -36,12 +36,13 @@ class TrainingManager extends Frontend
 	 * @param int
 	 * @return array
 	 */
-	public function getAvailableDates($intMaxDates = null)
+	public function getAvailableDates($intMaxDates = null, $blnSortByCourse=false)
 	{
 		$arrProperties = array
 		(
 			'blnAvailable'	=> true,
-			'intMaxDates'	=> ($intMaxDates === null ? null : (int) $intMaxDates)
+			'intMaxDates'	=> ($intMaxDates === null ? null : (int) $intMaxDates),
+			'strOrderBy'	=> ($blnSortByCourse ? 'category_name, name,' : ''),
 		);
 
 		return $this->findCourseDates($arrProperties);
@@ -137,11 +138,9 @@ class TrainingManager extends Frontend
 
 			" . ($blnAvailable ? "HAVING participantCount<tc.maxParticipants" : "") ."
 
-			ORDER BY category_name, name, td.startDate
+			ORDER BY $strOrderBy td.startDate
 
-			" . ($intMaxDates !== null ? " LIMIT 0, $intMaxDates " : ' ') . "
-
-			")
+			" . ($intMaxDates !== null ? " LIMIT 0, $intMaxDates " : ' '))
 		->execute();
 
 		while ($objDates->next())

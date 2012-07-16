@@ -112,7 +112,7 @@ class ModuleTrainingRegistration extends Module
 		}
 		else
 		{
-			$arrCourses = $this->TrainingManager->getAvailableDates();
+			$arrCourses = $this->TrainingManager->getAvailableDates(null, true);
 		}
 
 		if ($this->Input->post('FORM_SUBMIT') == $this->strFormId)
