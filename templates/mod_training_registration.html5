@@ -34,7 +34,7 @@ if($lastCategoryName != $course['category_name'])
 }
 ?>
 
-<option value="<?php echo $course['id']; ?>"<?php echo ($course['id'] == $this->selectedCourseId ? ' selected' : '');  ?>><?php echo $course['name']; ?>: <?php echo $course['dateRange']; ?></option>
+<option value="<?php echo $course['id']; ?>"<?php echo ($course['id'] == $this->selectedCourseId ? ' selected' : '');  ?>><?php echo $course['name']; ?>: <?php echo $course['dateRange']; ?> (<?php echo $course['available']; ?> freie Plätze)</option>
 <?php endforeach; ?>
 </optgroup>
 </select>
