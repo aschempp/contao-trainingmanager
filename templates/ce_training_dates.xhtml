@@ -7,10 +7,17 @@
 <?php endif; ?>
 
 <?php foreach($this->data as $row): ?>
-<div class="date"><?php echo $row['dateRange']; ?><?php if($row['available'] < 1): ?> <span class="bookedout">ausgebucht</span><?php endif; ?></div>
+<div class="date"><?php echo $row['dateRange']; ?>
+
+<?php if($row['available'] < 1): ?><span class="bookedout">ausgebucht</span><?php elseif($row['available'] == 1): ?><span class="availableplaces">1 freier Platz</span><?php else: ?><span class="availableplaces"><?php echo $row['available']; ?> freie Plätze</span><?php endif; ?>
+
+</div>
 <?php endforeach; ?>
 
 <a href="<?php echo $this->url; ?>" class="signup">jetzt anmelden</a>
 
 </div>
 <!-- indexer::continue -->
+
+
+
